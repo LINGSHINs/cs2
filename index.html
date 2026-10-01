@@ -4,7 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>噜噜一家 · 潮汕行</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
 <style>
+/* ============ 古色古香复合字体栈 ============ */
+:root{
+  /* 正文：宋体→仿宋，古籍刻印感 */
+  --font-body:"Noto Serif SC","STSong","Songti SC","FangSong","STFangsong","SimSun",Georgia,serif;
+  /* 标题：楷体→站酷小薇，典雅俊秀 */
+  --font-title:"STKaiti","KaiTi","ZCOOL XiaoWei","Noto Serif SC","STSong",Georgia,serif;
+  /* 毛笔/匾额：隶书→马善政，高古庄重 */
+  --font-brush:"LiSu","STLiti","Ma Shan Zheng","ZCOOL XiaoWei","Noto Serif SC",cursive;
+}
+
 /* ============ 八套配色皮肤 ============ */
 :root, [data-theme="terracotta"]{
   --bg:#f5ede0;--surface:#fffaf2;--surface-2:#efe6d5;
@@ -102,12 +115,25 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
 body{
-  font-family:-apple-system,"PingFang SC","Helvetica Neue",Arial,sans-serif;
-  background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;
+  font-family:var(--font-body);
+  background:var(--bg);color:var(--text);font-size:15px;line-height:1.7;
   -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(180,140,90,.04) 0, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(120,100,70,.03) 0, transparent 45%),
+    repeating-linear-gradient(45deg, rgba(160,130,90,.015) 0 2px, transparent 2px 6px);
+  background-attachment:fixed;
 }
-.serif{font-family:"Songti SC","Noto Serif SC",Georgia,"Times New Roman",serif}
-.app{display:flex;flex-direction:column;height:100vh;height:100dvh;max-width:480px;margin:0 auto;background:var(--bg)}
+.serif{font-family:var(--font-title);letter-spacing:.5px}
+.brush{font-family:var(--font-brush);letter-spacing:1px}
+
+/* 节庆粒子光晕 */
+.festive-glow{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 50% 0,rgba(200,50,42,.12),transparent 60%);
+  z-index:0;
+}
+.app{display:flex;flex-direction:column;height:100vh;height:100dvh;max-width:480px;margin:0 auto;background:transparent;position:relative}
 .content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 18px calc(20px + env(safe-area-inset-bottom))}
 .tab-page{display:none;animation:fadeIn .3s ease}
 .tab-page.active{display:block}
@@ -182,7 +208,7 @@ body{
   background:var(--surface);border:1px solid var(--line);border-radius:16px;
   width:64px;padding:14px 0 10px;box-shadow:var(--shadow);
 }
-.hero .cd-num{font-size:30px;font-weight:700;color:var(--primary);line-height:1;font-family:"Songti SC",Georgia,serif}
+.hero .cd-num{font-size:30px;font-weight:700;color:var(--primary);line-height:1;font-family:var(--font-title)}
 .hero .cd-unit{font-size:10px;color:var(--text-3);margin-top:6px;letter-spacing:1px}
 .hero .route-line{
   display:flex;align-items:center;justify-content:center;gap:8px;
@@ -190,6 +216,33 @@ body{
 }
 .hero .route-line .city{font-weight:600;color:var(--text)}
 .hero .route-line svg{width:16px;height:16px;stroke:var(--text-3)}
+
+/* 首页粒子特效 */
+.hero{position:relative;overflow:hidden}
+.hero-particles{
+  position:absolute;inset:0;width:100%;height:100%;
+  pointer-events:none;opacity:.6;z-index:0;
+}
+.hero>*:not(.hero-particles){position:relative;z-index:1}
+
+/* 浮动装饰：灯笼/茶叶 */
+.float-deco{
+  position:fixed;pointer-events:none;z-index:5;opacity:.5;
+  filter:drop-shadow(0 1px 3px rgba(0,0,0,.08));
+  animation:floatY 8s ease-in-out infinite;
+}
+@keyframes floatY{
+  0%,100%{transform:translateY(0) rotate(-2deg)}
+  50%{transform:translateY(-14px) rotate(2deg)}
+}
+@keyframes floatY2{
+  0%,100%{transform:translateY(0) rotate(3deg)}
+  50%{transform:translateY(-20px) rotate(-3deg)}
+}
+@keyframes floatY3{
+  0%,100%{transform:translateY(0) rotate(-1deg)}
+  50%{transform:translateY(-10px) rotate(1deg)}
+}
 
 .meta-row{
   display:flex;gap:10px;margin:20px 0 8px;
@@ -199,13 +252,13 @@ body{
   padding:14px;box-shadow:var(--shadow);
 }
 .meta-card .lbl{font-size:11px;color:var(--text-3);letter-spacing:1px}
-.meta-card .val{font-size:16px;font-weight:600;margin-top:4px;font-family:"Songti SC",Georgia,serif}
+.meta-card .val{font-size:16px;font-weight:600;margin-top:4px;font-family:var(--font-title)}
 .today-summary{
   background:var(--surface);border:1px solid var(--line);border-radius:14px;
   padding:16px;margin:0 0 16px;box-shadow:var(--shadow);
 }
 .today-summary .ts-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.today-summary .ts-day{font-size:20px;font-weight:700;color:var(--primary);font-family:"Songti SC",Georgia,serif}
+.today-summary .ts-day{font-size:20px;font-weight:700;color:var(--primary);font-family:var(--font-title)}
 .today-summary .ts-count{font-size:12px;color:var(--text-3)}
 .today-summary .ts-next{font-size:14px;color:var(--text-2);line-height:1.5}
 .today-summary .ts-next strong{color:var(--text);font-weight:600}
@@ -216,7 +269,7 @@ body{
 
 /* ============ 通用组件 ============ */
 .page-title{
-  font-family:"Songti SC",Georgia,serif;font-size:26px;font-weight:700;
+  font-family:var(--font-title);font-size:26px;font-weight:700;
   margin:24px 0 4px;letter-spacing:1px;
 }
 .page-sub{font-size:13px;color:var(--text-3);margin-bottom:20px}
@@ -273,8 +326,11 @@ body{
 .tl-now .tl-dot{box-shadow:0 0 0 3px var(--primary-soft),0 0 0 4px var(--primary)!important;animation:pulse 1.5s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 .now-badge{font-size:10px;padding:2px 8px;border-radius:6px;background:var(--primary);color:#fff;font-weight:600;animation:pulse 1.5s infinite}
-.baby-tag{font-size:10px;padding:2px 7px;border-radius:6px;background:var(--accent-soft);color:var(--accent);font-weight:500}
+.baby-tag{display:inline-flex;align-items:center;gap:3px;font-size:10px;padding:2px 7px;border-radius:6px;background:var(--accent-soft);color:var(--accent);font-weight:500;line-height:1}
+.baby-tag svg{width:11px;height:11px}
 .baby-tag.no{background:var(--danger-soft);color:var(--danger)}
+.baby-info{font-size:12px;color:var(--text-3);margin-top:6px;display:flex;align-items:center;gap:4px}
+.baby-info svg{width:13px;height:13px;flex-shrink:0}
 .tl-time{width:48px;flex-shrink:0;font-size:12px;color:var(--text-3);font-variant-numeric:tabular-nums;padding-top:2px}
 .tl-mid{display:flex;flex-direction:column;align-items:center;width:14px;flex-shrink:0}
 .tl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:6px;border:2px solid var(--surface);box-shadow:0 0 0 1px var(--line)}
@@ -312,7 +368,7 @@ body{
 /* ============ 导航页 ============ */
 .city-group{margin-bottom:20px}
 .city-title{
-  font-family:"Songti SC",Georgia,serif;font-size:18px;font-weight:700;
+  font-family:var(--font-title);font-size:18px;font-weight:700;
   margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--line);
 }
 .loc-list{display:flex;flex-direction:column;gap:8px}
@@ -333,7 +389,7 @@ body{
   padding:16px;margin-bottom:12px;box-shadow:var(--shadow);
 }
 .food-hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
-.food-name{font-size:16px;font-weight:600;font-family:"Songti SC",Georgia,serif}
+.food-name{font-size:16px;font-weight:600;font-family:var(--font-title)}
 .food-tag{font-size:11px;background:var(--accent-soft);color:var(--accent);padding:3px 10px;border-radius:10px}
 .food-desc{font-size:13px;color:var(--text-2);margin-bottom:10px}
 .dishes{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
@@ -344,7 +400,7 @@ body{
   text-decoration:none;padding:6px 0;
 }
 .food-nav svg{width:13px;height:13px}
-.stay-card .stay-name{font-size:16px;font-weight:600;font-family:"Songti SC",Georgia,serif;margin-bottom:4px}
+.stay-card .stay-name{font-size:16px;font-weight:600;font-family:var(--font-title);margin-bottom:4px}
 .stay-card .stay-room{font-size:13px;color:var(--text-2);margin-bottom:8px}
 .stay-card .stay-addr{font-size:12px;color:var(--text-3);line-height:1.5}
 .stay-card .stay-phone{margin-top:6px;font-size:13px}
@@ -364,7 +420,7 @@ body{
   width:100%;display:flex;align-items:center;gap:10px;padding:13px 14px;
   background:transparent;border:none;cursor:pointer;font-family:inherit;
 }
-.acc-name{font-size:14px;font-weight:600;color:var(--text-1);font-family:"Songti SC",Georgia,serif;flex:1;text-align:left}
+.acc-name{font-size:14px;font-weight:600;color:var(--text-1);font-family:var(--font-title);flex:1;text-align:left}
 .acc-count{font-size:11px;color:var(--text-3);background:var(--bg-2);padding:2px 8px;border-radius:8px}
 .acc-arrow{width:16px;height:16px;color:var(--text-3);transition:transform .25s;flex-shrink:0}
 .acc-hd.open .acc-arrow{transform:rotate(180deg)}
@@ -443,7 +499,7 @@ body{
   <!-- 顶部栏 -->
   <div class="topbar">
     <div class="brand">
-      <span class="t serif">噜噜一家 · 潮汕行</span>
+      <span class="t serif brush">噜噜一家 · 潮汕行</span>
       <span class="s">CHAOZHOU · SHANTOU · JIEYANG</span>
     </div>
     <button class="theme-btn" onclick="document.getElementById('themePanel').classList.add('open')">
@@ -495,6 +551,8 @@ body{
     <!-- 首页 -->
     <div class="tab-page active" data-tab="home">
       <div class="hero">
+        <canvas class="hero-particles" id="heroCanvas"></canvas>
+        <div class="festive-glow"></div>
         <div class="eyebrow">此刻关注 · NEXT UP</div>
         <div class="countdown-title" id="nextTitle">加载中…</div>
         <div class="cd-row">
@@ -612,6 +670,7 @@ const ICON = {
   rest:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h18M3 12h18M3 17h12"/></svg>',
   note:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>',
   end:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+  baby:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><circle cx="9" cy="11" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="11" r="1" fill="currentColor" stroke="none"/><path d="M9.5 15c1 1 4 1 5 0"/><path d="M12 5c-1-1.8-3-1.8-4-1"/></svg>',
 };
 
 /* 景点详情 */
@@ -1428,7 +1487,7 @@ DAYS.forEach((day,di)=>{
   const isToday=now.getTime()>=dayStart&&now.getTime()<=dayEnd;
   const isPastDay=dayEnd<now.getTime();
   // 找到下一个未开始的项（仅当天显示"进行中"）
-  let nowIdx=isPastDay?day.items.length:-1;
+  let nowIdx=isPastDay?day.items.length:(isToday?-1:0);
   if(isToday){
     for(let i=0;i<day.items.length;i++){
       const [h,m]=day.items[i].time.split(':').map(Number);
@@ -1456,24 +1515,24 @@ DAYS.forEach((day,di)=>{
     let babyTag='';
     if(it.sightKey&&SIGHTS[it.sightKey]&&SIGHTS[it.sightKey].baby!==undefined){
       const b=SIGHTS[it.sightKey];
-      babyTag=b.baby?`<span class="baby-tag" title="${b.babyTip||''}">🐣 宝宝友好</span>`:`<span class="baby-tag no" title="${b.babyTip||''}">🐣 注意</span>`;
+      babyTag=b.baby?`<span class="baby-tag" title="${b.babyTip||''}">${ICON.baby}宝宝友好</span>`:`<span class="baby-tag no" title="${b.babyTip||''}">${ICON.baby}注意</span>`;
     }
     if(it.foodKey&&FOODS[it.foodKey]&&FOODS[it.foodKey].baby!==undefined){
       const b=FOODS[it.foodKey];
-      babyTag=b.baby?`<span class="baby-tag" title="${b.babyTip||''}">🐣 宝宝友好</span>`:`<span class="baby-tag no" title="${b.babyTip||''}">🐣 注意</span>`;
+      babyTag=b.baby?`<span class="baby-tag" title="${b.babyTip||''}">${ICON.baby}宝宝友好</span>`:`<span class="baby-tag no" title="${b.babyTip||''}">${ICON.baby}注意</span>`;
     }
 
     // 可展开详情
     let expandHtml='';
     if(it.sightKey&&SIGHTS[it.sightKey]){
       const s=SIGHTS[it.sightKey];
-      const babyInfo=s.baby!==undefined?`<div style="font-size:12px;color:var(--text-3);margin-top:6px">🐣 ${s.baby?'宝宝友好':''}：${s.babyTip||''}</div>`:'';
+      const babyInfo=s.baby!==undefined?`<div class="baby-info">${ICON.baby} ${s.baby?'宝宝友好':''}：${s.babyTip||''}</div>`:'';
       expandHtml=`<button class="tl-expand-toggle" onclick="var e=this.nextElementSibling;e.classList.toggle('open');this.classList.toggle('open')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>景点介绍</button>
         <div class="tl-expand"><div style="margin-bottom:6px">${s.intro}</div><div style="font-size:12px;color:var(--text-3)">${s.tips}</div>${babyInfo}</div>`;
     }
     if(it.foodKey&&FOODS[it.foodKey]){
       const f=FOODS[it.foodKey];
-      const babyInfo=f.baby!==undefined?`<div style="font-size:12px;color:var(--text-3);margin-top:6px">🐣 ${f.baby?'宝宝友好':''}：${f.babyTip||''}</div>`:'';
+      const babyInfo=f.baby!==undefined?`<div class="baby-info">${ICON.baby} ${f.baby?'宝宝友好':''}：${f.babyTip||''}</div>`:'';
       expandHtml=`<button class="tl-expand-toggle" onclick="var e=this.nextElementSibling;e.classList.toggle('open');this.classList.toggle('open')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>推荐菜</button>
         <div class="tl-expand"><div class="dishes" style="margin-bottom:8px">${f.dishes.map(d=>`<span class="dish">${d}</span>`).join('')}</div><div style="font-size:12px;color:var(--text-3)">${f.price} · ${f.tips}</div>${babyInfo}</div>`;
     }
@@ -1501,7 +1560,7 @@ function refreshTimelineStatus(){
     const isPastDay=dayEnd<now;
     let nowIdx;
     if(isPastDay) nowIdx=items.length; // 已过天：全部past
-    else if(!isToday) nowIdx=items.length; // 未来天：全部future（nowIdx=length即没有now项）
+    else if(!isToday) nowIdx=0; // 未来天：全部future（没有任何项已过去）
     else{
       // 当天：找第一个时间>=now的项
       nowIdx=-1;
@@ -1638,6 +1697,69 @@ BOOKINGS.forEach(b=>{
 document.getElementById('bookList').innerHTML=bookHtml;
 
 document.getElementById('tipList').innerHTML=TIPS.map(t=>`<div class="tip-item"><div class="tip-t">${t.t}</div><div class="tip-d">${t.d}</div></div>`).join('');
+
+/* ============ 首页粒子特效（飘浮光点/茶叶） ============ */
+(function initHeroParticles(){
+  const canvas=document.getElementById('heroCanvas');
+  if(!canvas) return;
+  const ctx=canvas.getContext('2d');
+  let w,h,dpr=Math.min(window.devicePixelRatio||1,2);
+  const particles=[];
+  const COUNT=48;
+  function resize(){
+    const rect=canvas.parentElement.getBoundingClientRect();
+    w=rect.width;h=rect.height;
+    canvas.width=w*dpr;canvas.height=h*dpr;
+    canvas.style.width=w+'px';canvas.style.height=h+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function rand(a,b){return a+Math.random()*(b-a);}
+  function create(){
+    return {
+      x:rand(0,w),y:rand(0,h),
+      r:rand(1.2,4),
+      vx:rand(-.25,.25),vy:rand(-.4,-.1),
+      a:rand(.35,.85),ta:rand(.35,.85),
+      sway:rand(0,Math.PI*2),swayS:rand(.01,.025)
+    };
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    // 取主题色 + 国庆红金作为粒子色
+    const cs=getComputedStyle(document.documentElement);
+    const c1=cs.getPropertyValue('--primary').trim()||'#c45a3c';
+    const c2=cs.getPropertyValue('--accent').trim()||'#2f7a6b';
+    const c3=cs.getPropertyValue('--gold').trim()||'#b8893a';
+    const fr='#c8322a',fg='#d4a030'; // 国庆红金
+    const colors=[c1,c2,c3,fr,fg,fr,fg];
+    particles.forEach((p,i)=>{
+      p.sway+=p.swayS;
+      p.x+=p.vx+Math.sin(p.sway)*.3;
+      p.y+=p.vy;
+      p.a+=(p.ta-p.a)*.03;
+      if(p.y<-10){p.y=h+10;p.x=rand(0,w);}
+      if(p.x<-10)p.x=w+10;if(p.x>w+10)p.x=-10;
+      const col=colors[i%colors.length];
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=col;
+      ctx.globalAlpha=p.a;
+      ctx.fill();
+      // 光晕
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r*2.4,0,Math.PI*2);
+      const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*2.4);
+      g.addColorStop(0,col);g.addColorStop(1,'transparent');
+      ctx.fillStyle=g;ctx.globalAlpha=p.a*.4;ctx.fill();
+    });
+    ctx.globalAlpha=1;
+    requestAnimationFrame(draw);
+  }
+  resize();
+  for(let i=0;i<COUNT;i++) particles.push(create());
+  draw();
+  window.addEventListener('resize',resize);
+})();
 </script>
 </body>
 </html>
