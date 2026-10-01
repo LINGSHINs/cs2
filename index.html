@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>噜噜一家 · 潮汕行</title>
+<style>
+/* ============ 八套配色皮肤 ============ */
+:root, [data-theme="terracotta"]{
+  --bg:#f5ede0;--surface:#fffaf2;--surface-2:#efe6d5;
+  --text:#3d2e1f;--text-2:#7a6550;--text-3:#b09a82;--line:#e3d6c2;
+  --primary:#c45a3c;--primary-soft:#f7e6dd;--accent:#2f7a6b;--accent-soft:#dcece8;
+  --gold:#b8893a;--parchment:#f0e4cf;--ink:#3d2e1f;
+  --danger:#b3402e;--danger-soft:#f6dcd6;
+  --shadow:0 2px 14px rgba(60,40,20,.07);--shadow-lg:0 8px 30px rgba(60,40,20,.12);
+  --radius:14px;
+}
+[data-theme="celadon"]{
+  --bg:#eef1ed;--surface:#fafbf8;--surface-2:#e2e8e0;
+  --text:#26302a;--text-2:#617066;--text-3:#9aa89f;--line:#d4ddd5;
+  --primary:#3a7d6e;--primary-soft:#dcece8;--accent:#c47a3c;--accent-soft:#f7eadd;
+  --gold:#b8893a;--parchment:#e8ede5;--ink:#26302a;
+  --danger:#b3402e;--danger-soft:#f6dcd6;
+  --shadow:0 2px 14px rgba(40,60,50,.07);--shadow-lg:0 8px 30px rgba(40,60,50,.12);
+  --radius:14px;
+}
+[data-theme="sandalwood"]{
+  --bg:#f0ebe6;--surface:#faf7f4;--surface-2:#e6dfd7;
+  --text:#2e2420;--text-2:#6b5b53;--text-3:#a09087;--line:#ddd3c9;
+  --primary:#7a5a9e;--primary-soft:#ece4f2;--accent:#b8702e;--accent-soft:#f7ead8;
+  --gold:#b8893a;--parchment:#ebe5df;--ink:#2e2420;
+  --danger:#b3402e;--danger-soft:#f6dcd6;
+  --shadow:0 2px 14px rgba(50,40,60,.07);--shadow-lg:0 8px 30px rgba(50,40,60,.12);
+  --radius:14px;
+}
+[data-theme="ink"]{
+  --bg:#f4f4f2;--surface:#fbfbf9;--surface-2:#e8e8e4;
+  --text:#1c1c1a;--text-2:#5a5a55;--text-3:#9a9a93;--line:#dcdcd6;
+  --primary:#2c2c2a;--primary-soft:#e8e8e4;--accent:#8a6a3a;--accent-soft:#f0ead8;
+  --gold:#8a6a3a;--parchment:#efeee9;--ink:#1c1c1a;
+  --danger:#8a3020;--danger-soft:#f0d8d2;
+  --shadow:0 2px 14px rgba(30,30,30,.07);--shadow-lg:0 8px 30px rgba(30,30,30,.12);
+  --radius:12px;
+}
+/* 5. 海蓝 · 海岛度假 */
+[data-theme="ocean"]{
+  --bg:#eaf2f6;--surface:#ffffff;--surface-2:#dde8ef;
+  --text:#1a2e3a;--text-2:#557080;--text-3:#90a8b5;--line:#c8d8e2;
+  --primary:#1e6fa8;--primary-soft:#d6e8f5;--accent:#e0a83a;--accent-soft:#f8ecd0;
+  --gold:#e0a83a;--parchment:#e2edf3;--ink:#1a2e3a;
+  --danger:#b3402e;--danger-soft:#f6dcd6;
+  --shadow:0 2px 14px rgba(30,80,120,.08);--shadow-lg:0 8px 30px rgba(30,80,120,.14);
+  --radius:16px;
+}
+/* 6. 樱花 · 柔和甜美 */
+[data-theme="sakura"]{
+  --bg:#fdf4f6;--surface:#ffffff;--surface-2:#f6e4e9;
+  --text:#3d2a30;--text-2:#8a6a72;--text-3:#c0a8b0;--line:#f0d8de;
+  --primary:#d46a8a;--primary-soft:#fae0e8;--accent:#7ab08a;--accent-soft:#e0f0e4;
+  --gold:#d4a040;--parchment:#f7eaee;--ink:#3d2a30;
+  --danger:#b3402e;--danger-soft:#f6dcd6;
+  --shadow:0 2px 14px rgba(120,60,80,.07);--shadow-lg:0 8px 30px rgba(120,60,80,.12);
+  --radius:18px;
+}
+/* 7. 暗夜 · 深色高对比 */
+[data-theme="noir"]{
+  --bg:#121214;--surface:#1c1c20;--surface-2:#26262c;
+  --text:#ececf0;--text-2:#a0a0aa;--text-3:#6a6a74;--line:#32323a;
+  --primary:#e8a020;--primary-soft:#3a2e12;--accent:#4ec4b0;--accent-soft:#122e2a;
+  --gold:#e8a020;--parchment:#1e1e24;--ink:#ececf0;
+  --danger:#e05040;--danger-soft:#3a1814;
+  --shadow:0 2px 14px rgba(0,0,0,.5);--shadow-lg:0 8px 30px rgba(0,0,0,.6);
+  --radius:14px;
+}
+/* 8. 焦糖 · 复古咖啡 */
+[data-theme="caramel"]{
+  --bg:#f3ece0;--surface:#fbf6ec;--surface-2:#e8dcc8;
+  --text:#2e2418;--text-2:#7a6850;--text-3:#b09a7c;--line:#e0d2ba;
+  --primary:#a06830;--primary-soft:#f0e0c8;--accent:#6a8a50;--accent-soft:#e0ead2;
+  --gold:#b08040;--parchment:#ede2ce;--ink:#2e2418;
+  --danger:#b3402e;--danger-soft:#f0dcd4;
+  --shadow:0 2px 14px rgba(80,50,20,.08);--shadow-lg:0 8px 30px rgba(80,50,20,.14);
+  --radius:14px;
+}
+/* 系统深色模式覆盖（暗夜主题除外，本身就是深色） */
+@media (prefers-color-scheme: dark){
+  :root,[data-theme]:not([data-theme="noir"]){
+    --bg:#15110d;--surface:#1f1a15;--surface-2:#2a231c;
+    --text:#efe3d2;--text-2:#b8a890;--text-3:#7a6a55;--line:#332a20;
+    --parchment:#2a231c;--ink:#efe3d2;
+    --shadow:0 2px 14px rgba(0,0,0,.35);--shadow-lg:0 8px 30px rgba(0,0,0,.5);
+  }
+  [data-theme="terracotta"]:not([data-theme="noir"]){--primary:#d4704e;--primary-soft:#3a241a;--accent:#4a9a8a;--accent-soft:#1a2e2a}
+  [data-theme="celadon"]:not([data-theme="noir"]){--primary:#4a9a8a;--primary-soft:#1a2e2a;--accent:#d4924a;--accent-soft:#3a2a18}
+  [data-theme="sandalwood"]:not([data-theme="noir"]){--primary:#9a7abe;--primary-soft:#2a203a;--accent:#d4924a;--accent-soft:#3a2a18}
+  [data-theme="ink"]:not([data-theme="noir"]){--primary:#e0e0dc;--primary-soft:#3a3a36;--accent:#b89a6a;--accent-soft:#3a3224}
+  [data-theme="ocean"]:not([data-theme="noir"]){--primary:#5aa8d8;--primary-soft:#122e3a;--accent:#e0b84a;--accent-soft:#3a2e12}
+  [data-theme="sakura"]:not([data-theme="noir"]){--primary:#e890a8;--primary-soft:#3a1822;--accent:#8ac09a;--accent-soft:#122818}
+  [data-theme="caramel"]:not([data-theme="noir"]){--primary:#d09858;--primary-soft:#3a2a12;--accent:#8aaa6a;--accent-soft:#1a2a14}
+}
+
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:-apple-system,"PingFang SC","Helvetica Neue",Arial,sans-serif;
+  background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.serif{font-family:"Songti SC","Noto Serif SC",Georgia,"Times New Roman",serif}
+.app{display:flex;flex-direction:column;height:100vh;height:100dvh;max-width:480px;margin:0 auto;background:var(--bg)}
+.content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 18px calc(20px + env(safe-area-inset-bottom))}
+.tab-page{display:none;animation:fadeIn .3s ease}
+.tab-page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ============ 顶部栏 ============ */
+.topbar{
+  padding:calc(14px + env(safe-area-inset-top)) 18px 14px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--line);flex-shrink:0;background:var(--surface);
+}
+.brand{display:flex;flex-direction:column}
+.brand .t{font-size:17px;font-weight:600;letter-spacing:.5px}
+.brand .s{font-size:11px;color:var(--text-3);margin-top:1px;letter-spacing:1px}
+.theme-btn{
+  width:34px;height:34px;border-radius:10px;border:1px solid var(--line);
+  background:var(--surface);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:var(--text-2);
+}
+.theme-btn svg{width:18px;height:18px}
+
+/* 主题选择面板 */
+.theme-panel{
+  position:fixed;top:0;right:0;width:100%;height:100%;
+  background:rgba(0,0,0,.4);z-index:100;display:none;
+  justify-content:flex-end;
+}
+.theme-panel.open{display:flex}
+.theme-sheet{
+  width:260px;background:var(--surface);height:100%;padding:calc(60px + env(safe-area-inset-top)) 20px 20px;
+  box-shadow:var(--shadow-lg);animation:slideIn .3s ease;overflow-y:auto;
+}
+@keyframes slideIn{from{transform:translateX(100%)}to{transform:none}}
+.theme-sheet h3{font-size:13px;color:var(--text-3);font-weight:500;letter-spacing:2px;margin-bottom:16px}
+.theme-option{
+  display:flex;align-items:center;gap:12px;padding:14px 12px;border-radius:12px;
+  margin-bottom:8px;cursor:pointer;border:1px solid transparent;transition:.2s;
+}
+.theme-option.active{border-color:var(--primary);background:var(--primary-soft)}
+.theme-swatch{width:28px;height:28px;border-radius:50%;flex-shrink:0;border:2px solid #fff;box-shadow:0 0 0 1px var(--line)}
+.theme-option .nm{font-size:14px;font-weight:500}
+.theme-option .ds{font-size:11px;color:var(--text-3)}
+
+/* ============ 底部导航 ============ */
+.tabbar{
+  position:sticky;bottom:0;display:flex;background:var(--surface);
+  border-top:1px solid var(--line);
+  padding:6px 0 calc(6px + env(safe-area-inset-bottom));
+  flex-shrink:0;
+}
+.tab-item{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+  padding:6px 0;color:var(--text-3);font-size:10px;transition:color .2s;cursor:pointer;
+  background:none;border:none;font-family:inherit;
+}
+.tab-item svg{width:22px;height:22px;stroke-width:1.6}
+.tab-item.active{color:var(--primary)}
+.tab-item.active svg{stroke:var(--primary)}
+
+/* ============ 首页 ============ */
+.hero{
+  margin:24px 0 28px;text-align:center;
+}
+.hero .eyebrow{
+  font-size:11px;letter-spacing:4px;color:var(--text-3);text-transform:uppercase;margin-bottom:10px;
+}
+.hero .countdown-title{
+  font-size:15px;color:var(--text-2);margin-bottom:18px;font-weight:400;
+}
+.hero .cd-row{display:flex;justify-content:center;gap:10px;margin-bottom:24px}
+.hero .cd-cell{
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;
+  width:64px;padding:14px 0 10px;box-shadow:var(--shadow);
+}
+.hero .cd-num{font-size:30px;font-weight:700;color:var(--primary);line-height:1;font-family:"Songti SC",Georgia,serif}
+.hero .cd-unit{font-size:10px;color:var(--text-3);margin-top:6px;letter-spacing:1px}
+.hero .route-line{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  font-size:13px;color:var(--text-2);margin-top:8px;
+}
+.hero .route-line .city{font-weight:600;color:var(--text)}
+.hero .route-line svg{width:16px;height:16px;stroke:var(--text-3)}
+
+.meta-row{
+  display:flex;gap:10px;margin:20px 0 8px;
+}
+.meta-card{
+  flex:1;background:var(--surface);border:1px solid var(--line);border-radius:14px;
+  padding:14px;box-shadow:var(--shadow);
+}
+.meta-card .lbl{font-size:11px;color:var(--text-3);letter-spacing:1px}
+.meta-card .val{font-size:16px;font-weight:600;margin-top:4px;font-family:"Songti SC",Georgia,serif}
+.today-summary{
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;
+  padding:16px;margin:0 0 16px;box-shadow:var(--shadow);
+}
+.today-summary .ts-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.today-summary .ts-day{font-size:20px;font-weight:700;color:var(--primary);font-family:"Songti SC",Georgia,serif}
+.today-summary .ts-count{font-size:12px;color:var(--text-3)}
+.today-summary .ts-next{font-size:14px;color:var(--text-2);line-height:1.5}
+.today-summary .ts-next strong{color:var(--text);font-weight:600}
+.today-summary .ts-tag{
+  display:inline-block;font-size:10px;padding:2px 8px;border-radius:6px;
+  background:var(--primary-soft);color:var(--primary);font-weight:500;margin-left:6px;
+}
+
+/* ============ 通用组件 ============ */
+.page-title{
+  font-family:"Songti SC",Georgia,serif;font-size:26px;font-weight:700;
+  margin:24px 0 4px;letter-spacing:1px;
+}
+.page-sub{font-size:13px;color:var(--text-3);margin-bottom:20px}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;
+  padding:16px;box-shadow:var(--shadow);margin-bottom:12px;
+}
+.hi{color:var(--primary);font-weight:600}
+.section-hd{
+  display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
+  color:var(--text-2);margin:24px 0 12px;letter-spacing:1px;
+}
+.section-hd svg{width:15px;height:15px;stroke:var(--text-3)}
+.divider{height:1px;background:var(--line);margin:20px 0}
+
+/* ============ 行程页 ============ */
+.day-tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none;margin-bottom:4px}
+.day-tabs::-webkit-scrollbar{display:none}
+.day-tab{
+  flex-shrink:0;padding:8px 16px;border-radius:20px;border:1px solid var(--line);
+  background:var(--surface);font-size:13px;color:var(--text-2);cursor:pointer;font-family:inherit;
+  transition:.2s;
+}
+.day-tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.day-content{display:none}
+.day-content.active{display:block}
+
+.day-map-bar{display:flex;gap:8px;margin:14px 0}
+.btn{
+  flex:1;padding:10px 14px;border-radius:12px;font-size:13px;font-weight:500;
+  display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;
+  border:none;font-family:inherit;text-decoration:none;
+}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-ghost{background:var(--surface-2);color:var(--text)}
+.btn svg{width:15px;height:15px}
+.day-map{display:none;background:var(--parchment);border-radius:14px;padding:12px;margin-bottom:14px;border:1px solid var(--line)}
+.day-map.open{display:block}
+.day-map svg{width:100%;height:auto;display:block}
+.static-map{width:100%;height:auto;display:block;border-radius:10px;margin-bottom:10px}
+.map-svg{margin-bottom:10px}
+.map-legend{display:flex;flex-direction:column;gap:5px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+.ml-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-2)}
+.ml-num{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;flex-shrink:0}
+
+/* 时间轴 */
+.timeline{position:relative;padding-left:4px}
+.tl-item{display:flex;gap:12px;margin-bottom:4px}
+/* 时间轴状态：过去 / 进行中 / 未来 */
+.tl-past .tl-card{opacity:.5}
+.tl-past .tl-title{text-decoration:line-through;text-decoration-color:var(--text-3)}
+.tl-past .tl-dot{background:var(--text-3)!important}
+.tl-now .tl-card{border-color:var(--primary);box-shadow:0 0 0 2px var(--primary-soft),var(--shadow);background:var(--primary-soft)}
+.tl-now .tl-dot{box-shadow:0 0 0 3px var(--primary-soft),0 0 0 4px var(--primary)!important;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.now-badge{font-size:10px;padding:2px 8px;border-radius:6px;background:var(--primary);color:#fff;font-weight:600;animation:pulse 1.5s infinite}
+.baby-tag{font-size:10px;padding:2px 7px;border-radius:6px;background:var(--accent-soft);color:var(--accent);font-weight:500}
+.baby-tag.no{background:var(--danger-soft);color:var(--danger)}
+.tl-time{width:48px;flex-shrink:0;font-size:12px;color:var(--text-3);font-variant-numeric:tabular-nums;padding-top:2px}
+.tl-mid{display:flex;flex-direction:column;align-items:center;width:14px;flex-shrink:0}
+.tl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:6px;border:2px solid var(--surface);box-shadow:0 0 0 1px var(--line)}
+.tl-line{width:1.5px;flex:1;background:var(--line);margin:3px 0}
+.tl-card{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;box-shadow:var(--shadow)}
+.tl-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.tl-type{font-size:10px;padding:2px 8px;border-radius:6px;color:#fff;font-weight:500}
+.tl-title{font-size:14px;font-weight:600}
+.tl-desc{font-size:13px;color:var(--text-2);line-height:1.5}
+.tl-loc{
+  display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--accent);
+  text-decoration:none;margin-top:8px;margin-right:8px;
+}
+.tl-loc svg{width:12px;height:12px}
+.tl-expand{
+  margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);
+  font-size:13px;color:var(--text-2);display:none;
+}
+.tl-expand.open{display:block}
+.tl-expand-toggle{
+  display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--primary);
+  cursor:pointer;background:none;border:none;padding:4px 0;font-family:inherit;margin-top:8px;
+}
+.tl-expand-toggle svg{width:12px;height:12px;transition:.2s}
+.tl-expand-toggle.open svg{transform:rotate(180deg)}
+.book-tag{font-size:10px;background:var(--gold);color:#fff;padding:2px 7px;border-radius:5px;font-weight:500}
+.tl-alert,.tl-warn{
+  margin-top:10px;padding:10px 12px;border-radius:10px;font-size:12px;
+  display:flex;gap:8px;align-items:flex-start;line-height:1.5;
+}
+.tl-alert{background:var(--danger-soft);color:var(--danger)}
+.tl-warn{background:#fdf3e0;color:#b8893a}
+.tl-alert svg,.tl-warn svg{width:15px;height:15px;flex-shrink:0;margin-top:1px}
+
+/* ============ 导航页 ============ */
+.city-group{margin-bottom:20px}
+.city-title{
+  font-family:"Songti SC",Georgia,serif;font-size:18px;font-weight:700;
+  margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--line);
+}
+.loc-list{display:flex;flex-direction:column;gap:8px}
+.loc-item{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:12px 14px;text-decoration:none;color:var(--text);box-shadow:var(--shadow);
+}
+.loc-item .li-l{display:flex;align-items:center;gap:10px}
+.loc-item .li-dot{width:8px;height:8px;border-radius:50%;background:var(--primary);flex-shrink:0}
+.loc-item .li-nm{font-size:14px;font-weight:500}
+.loc-item .li-go{color:var(--accent);font-size:12px;display:flex;align-items:center;gap:4px}
+.loc-item .li-go svg{width:14px;height:14px}
+
+/* ============ 吃住页 ============ */
+.food-card,.stay-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;
+  padding:16px;margin-bottom:12px;box-shadow:var(--shadow);
+}
+.food-hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.food-name{font-size:16px;font-weight:600;font-family:"Songti SC",Georgia,serif}
+.food-tag{font-size:11px;background:var(--accent-soft);color:var(--accent);padding:3px 10px;border-radius:10px}
+.food-desc{font-size:13px;color:var(--text-2);margin-bottom:10px}
+.dishes{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.dish{font-size:12px;background:var(--primary-soft);color:var(--primary);padding:4px 10px;border-radius:8px;font-weight:500}
+.food-meta{font-size:12px;color:var(--text-3);display:flex;gap:12px;margin-bottom:10px}
+.food-nav{
+  display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--accent);
+  text-decoration:none;padding:6px 0;
+}
+.food-nav svg{width:13px;height:13px}
+.stay-card .stay-name{font-size:16px;font-weight:600;font-family:"Songti SC",Georgia,serif;margin-bottom:4px}
+.stay-card .stay-room{font-size:13px;color:var(--text-2);margin-bottom:8px}
+.stay-card .stay-addr{font-size:12px;color:var(--text-3);line-height:1.5}
+.stay-card .stay-phone{margin-top:6px;font-size:13px}
+
+/* 美食地图：城市Tab + 街区折叠 */
+.section-hd .section-sub{font-size:11px;color:var(--text-3);font-weight:400;margin-left:6px}
+.map-tip{font-size:12px;color:var(--text-3);margin:-6px 0 14px 2px}
+.city-tabs{display:flex;gap:8px;margin-bottom:14px;padding:4px;background:var(--bg-2);border-radius:12px}
+.city-tab{
+  flex:1;padding:9px 0;font-size:13px;font-weight:600;border:none;border-radius:9px;
+  background:transparent;color:var(--text-3);cursor:pointer;font-family:inherit;
+  transition:all .2s;
+}
+.city-tab.active{background:var(--surface);color:var(--primary);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.accordion{margin-bottom:8px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface)}
+.acc-hd{
+  width:100%;display:flex;align-items:center;gap:10px;padding:13px 14px;
+  background:transparent;border:none;cursor:pointer;font-family:inherit;
+}
+.acc-name{font-size:14px;font-weight:600;color:var(--text-1);font-family:"Songti SC",Georgia,serif;flex:1;text-align:left}
+.acc-count{font-size:11px;color:var(--text-3);background:var(--bg-2);padding:2px 8px;border-radius:8px}
+.acc-arrow{width:16px;height:16px;color:var(--text-3);transition:transform .25s;flex-shrink:0}
+.acc-hd.open .acc-arrow{transform:rotate(180deg)}
+.acc-bd{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.acc-hd.open+.acc-bd{max-height:5000px}
+.shop-list{display:flex;flex-direction:column;gap:8px;padding:0 12px 12px}
+.shop-item{
+  display:block;background:var(--bg-2);border:1px solid var(--line);border-radius:10px;
+  padding:11px 13px;text-decoration:none;color:inherit;
+  transition:border-color .2s;
+}
+.shop-item:active{border-color:var(--accent)}
+.shop-name{font-size:13.5px;font-weight:600;color:var(--text-1);margin-bottom:3px}
+.shop-name .star{color:#d4a017;margin-right:3px}
+.shop-addr{font-size:11px;color:var(--text-3);margin-bottom:6px}
+.shop-dishes{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
+.shop-dishes .dish.sm{font-size:10px;padding:2px 8px;border-radius:6px}
+.shop-note{font-size:11px;color:var(--text-2);line-height:1.5}
+.food-search-box{
+  display:flex;align-items:center;gap:8px;background:var(--surface);
+  border:1px solid var(--line);border-radius:12px;padding:0 12px;margin-bottom:10px;
+}
+.food-search-box svg{width:16px;height:16px;color:var(--text-3);flex-shrink:0}
+.food-search-box input{
+  flex:1;border:none;background:transparent;padding:11px 0;font-size:14px;
+  color:var(--text);outline:none;font-family:inherit;
+}
+.food-search-box input::placeholder{color:var(--text-3)}
+.clear-search{
+  background:none;border:none;color:var(--text-3);font-size:14px;cursor:pointer;
+  padding:4px;line-height:1;
+}
+.food-filters{
+  display:flex;gap:6px;overflow-x:auto;margin-bottom:14px;padding-bottom:2px;
+  scrollbar-width:none;
+}
+.food-filters::-webkit-scrollbar{display:none}
+.food-filter{
+  flex-shrink:0;padding:6px 12px;font-size:12px;border:1px solid var(--line);
+  border-radius:20px;background:var(--surface);color:var(--text-2);
+  cursor:pointer;font-family:inherit;white-space:nowrap;transition:.2s;
+}
+.food-filter.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.empty-tip{
+  text-align:center;color:var(--text-3);font-size:13px;padding:32px 0;
+}
+
+/* ============ 更多页 ============ */
+.todo-list{list-style:none}
+.todo-list li{
+  background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:12px 14px;margin-bottom:8px;font-size:13px;color:var(--text-2);
+  box-shadow:var(--shadow);display:flex;gap:10px;align-items:flex-start;
+}
+.todo-list li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--primary);margin-top:7px;flex-shrink:0}
+.tip-item{
+  background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:14px;margin-bottom:10px;box-shadow:var(--shadow);
+}
+.tip-item .tip-t{font-size:14px;font-weight:600;margin-bottom:4px;color:var(--primary)}
+.tip-item .tip-d{font-size:13px;color:var(--text-2);line-height:1.5}
+
+.book-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px;box-shadow:var(--shadow)}
+.book-hd{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.book-ic{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0}
+.book-ic svg{width:18px;height:18px}
+.book-title{font-size:14px;font-weight:600}
+.book-time{font-size:12px;color:var(--text-3);margin-top:1px}
+.book-meta{font-size:12px;color:var(--text-2);line-height:1.5}
+.book-loc{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--accent);text-decoration:none;margin-top:8px;margin-right:8px}
+.book-loc svg{width:12px;height:12px}
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- 顶部栏 -->
+  <div class="topbar">
+    <div class="brand">
+      <span class="t serif">噜噜一家 · 潮汕行</span>
+      <span class="s">CHAOZHOU · SHANTOU · JIEYANG</span>
+    </div>
+    <button class="theme-btn" onclick="document.getElementById('themePanel').classList.add('open')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 000 18M12 3v18M3 12h18"/></svg>
+    </button>
+  </div>
+
+  <!-- 主题面板 -->
+  <div class="theme-panel" id="themePanel" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="theme-sheet">
+      <h3>选择皮肤</h3>
+      <div class="theme-option active" data-theme="terracotta" onclick="setTheme('terracotta')">
+        <div class="theme-swatch" style="background:#c45a3c"></div>
+        <div><div class="nm">赤陶</div><div class="ds">暖阳 · 古城烟火气</div></div>
+      </div>
+      <div class="theme-option" data-theme="celadon" onclick="setTheme('celadon')">
+        <div class="theme-swatch" style="background:#3a7d6e"></div>
+        <div><div class="nm">青瓷</div><div class="ds">青绿 · 山海清风</div></div>
+      </div>
+      <div class="theme-option" data-theme="sandalwood" onclick="setTheme('sandalwood')">
+        <div class="theme-swatch" style="background:#7a5a9e"></div>
+        <div><div class="nm">紫檀</div><div class="ds">沉紫 · 南洋旧梦</div></div>
+      </div>
+      <div class="theme-option" data-theme="ink" onclick="setTheme('ink')">
+        <div class="theme-swatch" style="background:#2c2c2a"></div>
+        <div><div class="nm">墨黑</div><div class="ds">素净 · 杂志留白</div></div>
+      </div>
+      <div class="theme-option" data-theme="ocean" onclick="setTheme('ocean')">
+        <div class="theme-swatch" style="background:#1e6fa8"></div>
+        <div><div class="nm">海蓝</div><div class="ds">蔚蓝 · 海岛度假</div></div>
+      </div>
+      <div class="theme-option" data-theme="sakura" onclick="setTheme('sakura')">
+        <div class="theme-swatch" style="background:#d46a8a"></div>
+        <div><div class="nm">樱花</div><div class="ds">粉嫩 · 柔和甜美</div></div>
+      </div>
+      <div class="theme-option" data-theme="noir" onclick="setTheme('noir')">
+        <div class="theme-swatch" style="background:#e8a020"></div>
+        <div><div class="nm">暗夜</div><div class="ds">炭灰 · 琥珀高对比</div></div>
+      </div>
+      <div class="theme-option" data-theme="caramel" onclick="setTheme('caramel')">
+        <div class="theme-swatch" style="background:#a06830"></div>
+        <div><div class="nm">焦糖</div><div class="ds">咖啡 · 复古暖调</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 内容区 -->
+  <div class="content" id="content">
+    <!-- 首页 -->
+    <div class="tab-page active" data-tab="home">
+      <div class="hero">
+        <div class="eyebrow">此刻关注 · NEXT UP</div>
+        <div class="countdown-title" id="nextTitle">加载中…</div>
+        <div class="cd-row">
+          <div class="cd-cell"><div class="cd-num" id="cd-h">00</div><div class="cd-unit">时</div></div>
+          <div class="cd-cell"><div class="cd-num" id="cd-m">00</div><div class="cd-unit">分</div></div>
+          <div class="cd-cell"><div class="cd-num" id="cd-s">00</div><div class="cd-unit">秒</div></div>
+        </div>
+        <div class="route-line">
+          <span class="city">泉州</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <span class="city">潮州</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <span class="city">汕头</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <span class="city">揭阳</span>
+        </div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-card"><div class="lbl">行程日期</div><div class="val">10.1 — 10.3</div></div>
+        <div class="meta-card"><div class="lbl">天数</div><div class="val">3天2晚</div></div>
+      </div>
+      <div class="today-summary" id="todaySummary"></div>
+      <div class="section-hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>关键节点</div>
+      <div class="card" style="font-size:13px;color:var(--text-2);line-height:2">
+        <div><span style="color:var(--primary);font-weight:600">10/1</span>　潮州古城 · 广济桥灯光秀</div>
+        <div><span style="color:var(--accent);font-weight:600">10/2</span>　汕头小公园 → 揭阳</div>
+        <div><span style="color:var(--gold);font-weight:600">10/3</span>　揭阳古城 → 返程泉州</div>
+      </div>
+    </div>
+
+    <!-- 行程页 -->
+    <div class="tab-page" data-tab="itinerary">
+      <h1 class="page-title serif">逐日行程</h1>
+      <p class="page-sub">三天两夜 · 潮州 → 汕头 → 揭阳</p>
+      <div class="day-tabs" id="dayTabs"></div>
+      <div id="dayContents"></div>
+    </div>
+
+    <!-- 导航页 -->
+    <div class="tab-page" data-tab="nav">
+      <h1 class="page-title serif">地点导航</h1>
+      <p class="page-sub">点击地点一键唤起高德地图</p>
+      <div id="navList"></div>
+    </div>
+
+    <!-- 吃住页 -->
+    <div class="tab-page" data-tab="food">
+      <h1 class="page-title serif">吃 · 住</h1>
+      <p class="page-sub">潮汕味道 & 下榻之所</p>
+      <div class="section-hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20l-5.4-5.4a2 2 0 010-2.8L12 3l8.4 8.8a2 2 0 010 2.8L15 20H9z"/></svg>美食地图 <span class="section-sub">点击街区展开 · 店名可高德搜索</span></div>
+      <div class="city-tabs">
+        <button class="city-tab active" data-city="cz">潮州</button>
+        <button class="city-tab" data-city="st">汕头</button>
+        <button class="city-tab" data-city="jy">揭阳</button>
+      </div>
+      <div class="food-search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input type="text" id="foodSearch" placeholder="搜索店名或菜品…" oninput="filterFood()">
+        <button class="clear-search" id="clearSearch" onclick="document.getElementById('foodSearch').value='';filterFood()" style="display:none">✕</button>
+      </div>
+      <div class="food-filters" id="foodFilters"></div>
+      <div id="foodMapContainer"></div>
+      <div class="section-hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 6v6l4 2"/></svg>精选餐厅</div>
+      <div id="foodList"></div>
+      <div class="section-hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg>住宿</div>
+      <div id="stayList"></div>
+    </div>
+
+    <!-- 更多页 -->
+    <div class="tab-page" data-tab="more">
+      <h1 class="page-title serif">更多</h1>
+      <p class="page-sub">待办 · 交通 · 贴士</p>
+      <div class="section-hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>待办清单</div>
+      <ul class="todo-list" id="todoList"></ul>
+      <div class="section-hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M8 17l-2 4M16 17l2 4"/></svg>交通订单</div>
+      <div id="bookList"></div>
+      <div class="section-hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 00-4 12.7V17a1 1 0 001 1h6a1 1 0 001-1v-2.3A7 7 0 0012 2z"/></svg>实用贴士</div>
+      <div id="tipList"></div>
+    </div>
+  </div>
+
+  <!-- 底部导航 -->
+  <div class="tabbar">
+    <button class="tab-item active" data-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>首页</button>
+    <button class="tab-item" data-tab="itinerary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M3 12h18M3 18h12"/></svg>行程</button>
+    <button class="tab-item" data-tab="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>导航</button>
+    <button class="tab-item" data-tab="food"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2M7 2v20M16 2v8c0 2.5 2 4 2 4s2-1.5 2-4V2h-4zM18 14v8"/></svg>吃住</button>
+    <button class="tab-item" data-tab="more"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>更多</button>
+  </div>
+</div>
+
+<script>
+/* ============ 数据 ============ */
+/* 高德静态地图 Key —— 请到 https://lbs.amap.com/ 申请「Web服务」Key 填入，路线图即显示真实地图；不填则显示示意图 */
+window.AMAP_KEY='79c125f5207667df6356826ffa028dc2';
+const P = {
+  qz:[118.589,24.881,'泉州站'], cs:[116.647,23.533,'潮汕站'],
+  czHotel:[116.617,23.657,'潮州古城潮枫路亚朵酒店'], xihu:[116.622,23.663,'潮州西湖公园'],
+  xima:[116.621,23.658,'西马路小吃街'], pafang:[116.627,23.660,'牌坊街'],
+  kaiyuan:[116.628,23.660,'开元寺'], guangji:[116.631,23.662,'广济桥'],
+  niurou:[116.625,23.659,'官塘兄弟牛肉火锅'], chaotai:[116.624,23.656,'潮泰牛肉火锅(国贸店)'], fengchun:[116.630,23.650,'枫春白粥(腾瑞柏嘉名庭店)'], zhou:[116.624,23.659,'潮汕砂锅粥'], xpark:[116.676,23.354,'汕头小公园开埠区'],
+  aixi:[116.678,23.355,'爱西干面(小公园总店)'], laoma:[116.679,23.356,'老妈宫粽球'],
+  stz:[116.699,23.379,'汕头站'], jyHotel:[116.368,23.546,'揭阳楼揭阳大道亚朵酒店'],
+  jylou:[116.370,23.548,'揭阳楼广场'], jinxian:[116.373,23.541,'进贤门城楼'],
+  xuegong:[116.374,23.542,'揭阳学宫'], chengh:[116.374,23.543,'揭阳城隍庙'],
+  zhongsh:[116.375,23.542,'中山路骑楼街'], jyz:[116.418,23.608,'揭阳站'],
+  huilai:[116.372,23.545,'惠来馆隆江猪脚饭'],
+};
+const ICON = {
+  train:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M8 17l-2 4M16 17l2 4"/></svg>',
+  hotel:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg>',
+  food:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2M7 2v20M16 2v8c0 2.5 2 4 2 4s2-1.5 2-4V2h-4zM18 14v8"/></svg>',
+  sight:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>',
+  taxi:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 17h14M7 17l2-7h6l2 7M5 17v2M19 17v2"/></svg>',
+  rest:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h18M3 12h18M3 17h12"/></svg>',
+  note:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>',
+  end:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+};
+
+/* 景点详情 */
+const SIGHTS = {
+  xihu:{intro:'潮州西湖始建于唐，是潮州古城的后花园。湖光山色，有寿安寺、涵碧楼等古迹。清晨人少清静，适合带娃散步。',tips:'免费开放 · 距酒店步行10分钟 · 推车方便',baby:true,babyTip:'推车方便，湖边平路好走'},
+  pafang:{intro:'牌坊街是潮州古城的核心，全长1948米，立有23座明清石牌坊，每座都刻有科第功名。两侧是骑楼商铺，老字号云集。',tips:'免费 · 推车可进 · 建议下午4点后逛，避开正午烈日',baby:true,babyTip:'推车可进，骑楼有遮阳'},
+  kaiyuan:{intro:'开元寺始建于唐开元26年（738年），是粤东地区最大的佛教寺院。天王殿、大雄宝殿、藏经楼层层递进，宋代石经幢和唐代石雕是镇寺之宝。',tips:'免费 · 门口有素菜馆 · 正殿需脱帽致敬',baby:false,babyTip:'人多嘈杂，不建议久留'},
+  guangji:{intro:'广济桥（湘子桥）与赵州桥、洛阳桥、卢沟桥并称中国四大古桥。始建于南宋，横跨韩江，是世界上最早的启闭式桥梁——每天17:30拆浮桥通船，次日再拼回。',tips:'门票20元/人，1.2m以下免费 · 17:00停止入场 · 17:30拆浮桥奇观 · 灯光秀20:00/21:30两场',baby:true,babyTip:'1.2m以下免票，桥面平推车可过'},
+  xpark:{intro:'汕头小公园开埠区是汕头的城市原点。以中山纪念亭为中心，放射状分布着南洋风格骑楼，是中国大陆仅存的呈放射状格局的骑楼街道。',tips:'免费 · 老妈宫戏台、开埠文化陈列馆可逛 · 国庆人多注意看护噜噜',baby:true,babyTip:'骑楼街平路推车可逛，注意人多'},
+  jinxian:{intro:'进贤门城楼是揭阳古城的标志性建筑，始建于明万历年间，红柱碧瓦，飞檐翘角。城门上方嵌"进贤门"石匾，寓意进贤纳士。',tips:'免费 · 揭阳地标 · 登楼可俯瞰古城',baby:true,babyTip:'城楼可推车，登楼台阶需抱'},
+  xuegong:{intro:'揭阳学宫是全国第二大孔庙（仅次于曲阜），始建于南宋，红墙黄瓦，气势恢宏。大成殿内有孔子塑像和古代科举展览。',tips:'免费 · ⚠️逢周五闭馆（10/3是周五！）如闭馆改去丁氏光禄公祠/中山路',baby:false,babyTip:'台阶多，推车不便'},
+  chengh:{intro:'揭阳城隍庙始建于宋绍兴十年，是广东省内保存最完整的城隍庙之一。木雕、石雕、嵌瓷工艺精湛，"揭阳城隍"香火鼎盛。',tips:'免费 · 宋代古庙 · 看潮汕嵌瓷工艺',baby:true,babyTip:'平路推车可进，香火烟注意'},
+  zhongsh:{intro:'揭阳中山路骑楼街长约600米，南洋风情浓郁，是揭阳历史文化街区的核心。沿街有老字号商铺、茶馆和小吃店。',tips:'免费 · 乒乓粿、糖葱薄饼在此可尝',baby:true,babyTip:'骑楼街平路，推车方便'},
+  jylou:{intro:'揭阳楼广场以巨型铜方鼎闻名，广场开阔，是揭阳的城市客厅。傍晚可看市民跳广场舞，感受本地生活。',tips:'免费 · 距酒店约800米步行可达',baby:true,babyTip:'广场开阔，推车遛娃好去处'},
+};
+
+/* 美食详情 */
+const FOODS = {
+  xima:{name:'西马路小吃街',area:'潮州古城',dishes:['牛杂粿条','鱼饺汤','手打牛肉丸','粿汁','春卷'],price:'人均25元',desc:'潮州本地人的食堂，小吃摊密密麻麻。牛杂粿条汤头浓郁，牛肉丸Q弹爆汁。',tips:'噜噜友好：粿条软烂、肉丸可切碎 · 避开12点高峰',baby:true,babyTip:'粿条软烂、肉丸可切碎'},
+  niurou:{name:'官塘兄弟牛肉火锅',area:'潮州古城',dishes:['吊龙','匙仁','嫩肉','牛百叶','胸口朥','沙茶酱'],price:'人均80元',desc:'潮州牛肉火锅代表，现宰现切，牛肉从屠宰到上桌不超过4小时。清汤锅底涮嫩肉，原汁原味。',tips:'噜噜吃法：清汤涮嫩肉不蘸酱 · 国庆17:30前到或美团取号 · 备选：阿彬牛肉、官塘阿彬',baby:true,babyTip:'清汤涮嫩肉不蘸酱，噜噜可吃'},
+  chaotai:{name:'潮泰牛肉火锅（国贸店）',area:'潮州古城',dishes:['湿炒牛河','金牌牛肉丸','鲜牛肉','吊龙','匙肉','胸口油','雪花牛肉'],price:'人均94元',desc:'创于1992年的潮州老字号牛肉火锅，高德状元榜上榜店。匙仁、雪花、吊龙每口都鲜嫩，湿炒牛河是招牌必点。',tips:'噜噜吃法：清汤涮嫩肉不蘸酱 · 国庆建议11:30前到或美团取号 · 电话0768-2312848',baby:true,babyTip:'清汤涮嫩肉不蘸酱，噜噜可吃；湿炒牛河可少量尝'},
+  fengchun:{name:'枫春白粥（腾瑞柏嘉名庭店）',area:'潮州古城',dishes:['生腌咸膏蟹','生腌虾','薄壳米','腌生蚝','白粥','鱼饭','海鲜砂锅粥'],price:'人均80元',desc:'潮州鼎鼎有名的夜糜店，本地人的夜宵据点。白粥用珍珠米熬制绵滑暖胃，生腌海鲜现捞现腌，一粥配百味。营业到凌晨3点，可外卖。',tips:'噜噜别吃生腌 · 白粥可吃 · 推荐美团外卖送到酒店 · 营业17:00-翌日03:00',baby:false,babyTip:'噜噜别吃生腌，白粥可吃'},
+  zhou:{name:'潮汕砂锅粥',area:'潮州古城',dishes:['鲜虾砂锅粥','膏蟹砂锅粥','田鸡粥','皮蛋瘦肉粥','椒盐虾'],price:'人均50元',desc:'潮州砂锅粥用生米现熬，米粒开花、粥水浓稠，鲜虾膏蟹的鲜味全熬进粥里。养胃暖身，老少皆宜。',tips:'噜噜友好：粥软烂易消化，不加盐先盛一碗 · 国庆提前美团取号',baby:true,babyTip:'粥软烂易消化，不加盐先盛一碗给噜噜'},
+  aixi:{name:'爱西干面（小公园总店）',area:'汕头小公园',dishes:['干面','猪杂汤','卤味','酸咸菜'],price:'人均20元',desc:'汕头老字号，干面拌芝麻酱香气扑鼻，配一碗猪杂汤解腻。店面小但翻台快。',tips:'噜噜友好：干面不辣可吃 · 猪杂汤清淡',baby:true,babyTip:'干面不辣，猪杂汤清淡'},
+  laoma:{name:'老妈宫粽球',area:'汕头小公园',dishes:['双烹粽球','咸甜粽','猪肚汤'],price:'人均15元',desc:'汕头粽球界的天花板，双烹粽一半咸一半甜，咸的有五花肉蛋黄，甜的有红豆沙。',tips:'一个粽球分量大，一家人分一个尝鲜即可',baby:false,babyTip:'糯米不易消化，少吃'},
+  xparkSnack:{name:'小公园骑楼小吃',area:'汕头小公园',dishes:['甘草水果','无米粿','糖葱薄饼','肠粉','鲎粿'],price:'人均30元',desc:'骑楼沿街都是小吃摊，甘草水果是潮汕特色——新鲜水果蘸甘草盐，酸甜开胃。',tips:'甘草水果噜噜爱吃 · 无米粿外皮酥脆',baby:true,babyTip:'甘草水果噜噜爱吃，肠粉软滑'},
+  huilai:{name:'惠来馆隆江猪脚饭',area:'揭阳古城',dishes:['隆江猪脚饭','卤鹅','蚝烙','鼠壳粿'],price:'人均30元',desc:'揭阳隆江猪脚饭是潮汕猪脚饭的发源地。猪脚卤得软烂入味，肥而不腻，拌饭一绝。',tips:'噜噜友好：猪脚软烂可直接吃 · 备选：街电猪脚饭、老尾猪脚饭',baby:true,babyTip:'猪脚软烂可直接吃'},
+};
+
+/* 潮州古城美食地图（按街区分组，每家可点击高德搜索） */
+const CZ_FOOD_MAP = [
+  {area:'牌坊街 / 潮州古城', loc:'pafang', shops:[
+    {n:'谢三卤·三十八年非遗卤水火锅',addr:'东门街35号（牌坊街内）',d:['狮头鹅鹅肝','鹅肠','五花脚趾肉','吊龙伴牛肉','菜脯虾滑','鹅货三拼'],note:'38年老卤汤，潮州本地人常排队，吃完步行去广济桥/开元寺'},
+    {n:'胡荣泉',addr:'太平路183-185号（状元牌坊旁）',d:['鸭母捻','春卷','芋泥饼','腐乳饼','沙茶面'],note:'百年老字号，鸭母捻上过央视纪录片，必打卡'},
+    {n:'潮涂记腐乳鸡翅',addr:'湘桥区牌坊街',d:['腐乳鸡翅'],note:'鸡翅炸得鲜香酥脆，带淡淡腐乳味，外酥里嫩'},
+    {n:'文香肠粉',addr:'太平路263号',d:['肠粉'],note:''},
+    {n:'和盛糖葱薄饼',addr:'太平路690号',d:['糖葱薄饼'],note:''},
+    {n:'宫仔巷春饼',addr:'太平街道宫仔巷6号',d:['春饼'],note:''},
+    {n:'旺记小吃',addr:'太平路626号',d:[],note:''},
+    {n:'莲华素食府',addr:'开元路开元广场内',d:['素食'],note:''},
+    {n:'顺伯反沙屋',addr:'牌坊街太平路712号',d:['反沙芋头','反沙番薯'],note:''},
+  ]},
+  {area:'开元路', loc:'kaiyuan', shops:[
+    {n:'开元上西平咸水粿',addr:'开元路与上西平路交叉口',d:['咸水粿'],note:''},
+    {n:'老牌咸水粿',addr:'上西平路和开元路交叉路口',d:['咸水粿'],note:''},
+    {n:'古法甜品·潮汕手工甜汤',addr:'太平街道开元路257号',d:['甜汤'],note:''},
+    {n:'余时冰室',addr:'开元路华荣西饼路口拐入内路',d:['冰室'],note:''},
+    {n:'权记饼食',addr:'太平街道开元路163号',d:['饼食'],note:''},
+    {n:'扬航饼家',addr:'开元路40号',d:['饼家'],note:''},
+  ]},
+  {area:'西马路', loc:'xima', shops:[
+    {n:'官塘锋记鱼生·生腌·砂锅粥',addr:'西马路70号文化馆隔壁',d:['金鲷鱼生','虾生','咸膏蟹','凉拌鱼皮','奶酪三文鱼','鱼生串串'],note:'明档现切鱼生，薄如蝉翼，本地人聚集地；生腌噜噜别吃'},
+    {n:'谢怀亮芝麻茶',addr:'北园路体委综合楼3号（西湖公园北门对面）',d:['芝麻茶','杏仁茶双拼','炸豆腐','炸肉串','炸鸡翅'],note:'人均12元，芝麻茶杏仁茶双拼入口丝滑醇香'},
+    {n:'永记小食店',addr:'西马路315号',d:['春卷'],note:'潮州春饼内馅是绿豆、猪肉、虾米、香菇，炸到酥脆'},
+    {n:'吴进平小食店',addr:'西马路真君宫巷口',d:['春饼'],note:''},
+    {n:'老尾春饼',addr:'西马路真君宫巷306号',d:['春饼'],note:''},
+    {n:'林记小食店',addr:'西马路298号',d:[],note:''},
+    {n:'老四麦粿',addr:'西马路306号',d:['麦粿'],note:''},
+    {n:'真君宫巷老三豆干丸',addr:'西马路左手第一条巷子尽头真君宫口',d:['豆干丸'],note:''},
+    {n:'甘草世家',addr:'西马路290号',d:['甘草水果'],note:''},
+    {n:'伟记小食店',addr:'西马路真君宫巷口对面',d:[],note:''},
+    {n:'西马路糖葱薄饼',addr:'西马路210号',d:['糖葱薄饼'],note:''},
+    {n:'阮师傅手打牛肉丸',addr:'湘桥区西马路',d:['手打牛肉丸'],note:''},
+  ]},
+  {area:'昌黎路', loc:'pafang', shops:[
+    {n:'昌黎路车轮饼',addr:'昌黎路小学正门附近巷子',d:['车轮饼'],note:''},
+    {n:'辉叔老电影院鲜榨水果汁',addr:'昌黎路88号',d:['鲜榨果汁'],note:''},
+    {n:'皇后鸡翅',addr:'昌黎路35号',d:['鸡翅'],note:''},
+    {n:'猴兄果汁冰',addr:'昌黎路127号',d:['果汁冰'],note:''},
+    {n:'玉华茶庄',addr:'昌黎路附近',d:['凤凰单丛茶'],note:''},
+  ]},
+  {area:'义安路', loc:'pafang', shops:[
+    {n:'老妈宫粽球',addr:'湘桥区义安路',d:['双烹粽球','咸甜粽'],note:''},
+    {n:'镇前街·腐乳鸡翅',addr:'义安路217号',d:['腐乳鸡翅'],note:''},
+    {n:'义潮记·潮汕虾枣',addr:'义安路127号',d:['虾枣'],note:''},
+    {n:'莲·潮州冰淇淋',addr:'三宝·义安路店',d:['鸭屎香冰淇淋'],note:''},
+    {n:'如如糯米铺',addr:'义安路101号',d:['糯米'],note:''},
+    {n:'顺顺糯米铺',addr:'义安路114号',d:['糯米'],note:''},
+    {n:'管巷头粿条面',addr:'义安路管巷头46号',d:['粿条面'],note:''},
+    {n:'戏院前饮食店',addr:'义安路34号',d:[],note:''},
+    {n:'老猪肠粉',addr:'义安路49号',d:['肠粉'],note:''},
+  ]},
+  {area:'振德街', loc:'pafang', shops:[
+    {n:'华姐糕粿',addr:'南春路与振德街交叉口',d:['糕粿'],note:''},
+    {n:'邱记粿铺',addr:'湘桥区振德街中段',d:['粿'],note:''},
+    {n:'三代人的甘草水果',addr:'振德街中段橙色亭子斜对面',d:['甘草水果'],note:''},
+    {n:'老喜鸡翅',addr:'潮州市振德街中段',d:['鸡翅'],note:''},
+    {n:'迷你油糟粿',addr:'振德街中段榕荫亭对面左侧',d:['油糟粿'],note:''},
+    {n:'强大粿卷',addr:'振德街中段',d:['粿卷'],note:''},
+    {n:'老喜振德街炸香鸡翅',addr:'湘桥区振德街27号',d:['炸鸡翅'],note:''},
+  ]},
+  {area:'永护路 / 城新路', loc:'czHotel', shops:[
+    {n:'乌记明卤鹅(古城总店)',addr:'西马路（古城总店）',d:['狮头鹅五拼拼盘','茶香虾','潮式蚝烙','鹅肝','鹅翅','红桃粿'],note:'潮州非遗卤鹅，鹅肉偏甜口，粉肝必点；可堂食可打包'},
+    {n:'翻坛·潮汕酸菜鱼',addr:'电信店',d:['潮汕酸菜鱼'],note:'近10年老店，鱼肉新鲜现宰无腥味'},
+    {n:'阿光肠粉猪血汤',addr:'城新路与永护路交叉口',d:['肠粉','猪血汤'],note:''},
+    {n:'关云肠石磨肠粉·特色烤肉',addr:'永护路信和里47号',d:['肠粉'],note:''},
+    {n:'雷记粿条面肠粉',addr:'永护路15号',d:['粿条面'],note:''},
+    {n:'伟记粿条汤',addr:'永护路2号腾瑞尚品轩1号铺面',d:['粿条汤'],note:''},
+    {n:'德记粿汁',addr:'永护路正宗干洗旁边小巷',d:['粿汁'],note:''},
+    {n:'澄海老牌猪脚饭',addr:'潮州湘桥区城新路29号',d:['猪脚饭'],note:''},
+    {n:'创新牛肉粿条',addr:'永护路13号',d:['牛肉粿条'],note:''},
+    {n:'深夜牛排',addr:'永护路43号门市',d:['牛排'],note:''},
+  ]},
+  {area:'新桥路 / 中山路', loc:'czHotel', shops:[
+    {n:'新桥肠粉',addr:'新桥路与吉利街交叉口',d:['肠粉'],note:''},
+    {n:'新桥砂锅饭',addr:'新桥路新英里',d:['砂锅饭'],note:''},
+    {n:'新桥路鸡宝煲',addr:'新桥路新福里4号',d:['鸡煲'],note:''},
+    {n:'美味传承',addr:'湘桥区中山路53号',d:[],note:''},
+    {n:'潮府果汁冰',addr:'湘桥区中山路36号',d:['果汁冰'],note:''},
+    {n:'南亭肖米粽球',addr:'中山路龙新花园西北侧',d:['粽球'],note:''},
+  ]},
+  {area:'其他推荐', loc:'pafang', shops:[
+    {n:'松发咖啡厅 songfa cafe',addr:'电信路店',d:['培根滑蛋可颂','低卡干酪火腿嘟嘟咪','三明治'],note:'社区咖啡店，环境温馨，下午茶好去处'},
+    {n:'三家特产',addr:'潮州本土老店',d:['凤凰单丛茶（鸭屎香、蜜兰香）','青梅葡萄','潮汕话梅'],note:'三代经营，适合带伴手礼给长辈'},
+  ]},
+  {area:'肠粉', shops:[
+    {n:'海阳肠粉',addr:'潮州',d:['肠粉'],note:''},
+    {n:'师傅肠粉',addr:'潮州',d:['肠粉'],note:''},
+    {n:'工行肠粉',addr:'潮州',d:['肠粉'],note:''},
+    {n:'双生肠粉',addr:'潮州',d:['肠粉'],note:''},
+    {n:'一家人肠粉',addr:'潮州',d:['肠粉'],note:''},
+    {n:'阿光肠粉猪血汤',addr:'潮州',d:['肠粉','猪血汤'],note:''},
+    {n:'阿明肠粉',addr:'潮州',d:['肠粉'],note:''},
+    {n:'裕记肠粉',addr:'潮州',d:['肠粉'],note:''},
+    {n:'阿渠肠粉蒸面',addr:'潮州',d:['肠粉','蒸面'],note:''},
+    {n:'震弟肠粉',addr:'潮州',d:['肠粉'],note:''},
+    {n:'老西新肠粉麻辣烫',addr:'潮州',d:['肠粉','麻辣烫'],note:''},
+    {n:'谢记老牌肠粉',addr:'潮州',d:['肠粉'],note:''},
+    {n:'老四肠粉',addr:'潮州',d:['肠粉'],note:''},
+    {n:'全新肠粉',addr:'潮州',d:['肠粉'],note:''},
+  ]},
+  {area:'粿条汤', shops:[
+    {n:'开元路尾粿条面',addr:'开元路',d:['粿条汤','粿条面'],note:''},
+    {n:'伟记粿条汤',addr:'潮州',d:['粿条汤'],note:''},
+    {n:'榕树下春光牛杂粿',addr:'潮州',d:['牛杂粿条'],note:''},
+    {n:'老胜牛杂',addr:'潮州',d:['牛杂粿条'],note:''},
+    {n:'阿明粿条汤',addr:'潮州',d:['粿条汤'],note:''},
+    {n:'阿辉老点粿条',addr:'潮州',d:['粿条汤'],note:''},
+    {n:'潮新粿条面',addr:'潮州',d:['粿条汤','粿条面'],note:''},
+    {n:'南较创新牛肉粿条',addr:'南较路',d:['牛肉粿条'],note:''},
+    {n:'海龙王粿条面',addr:'潮州',d:['粿条汤'],note:''},
+    {n:'光头佬牛杂果条',addr:'潮州',d:['牛杂粿条'],note:''},
+    {n:'民记猪杂汤',addr:'潮州',d:['猪杂汤','粿条'],note:''},
+    {n:'老丁粿条汤',addr:'潮州',d:['粿条汤'],note:''},
+    {n:'老民粿条',addr:'潮州',d:['粿条汤'],note:''},
+    {n:'西门市场牛杂粿条',addr:'西门市场',d:['牛杂粿条'],note:''},
+    {n:'啊2诺杂粿条汤饺汤',addr:'潮州',d:['粿条汤','饺汤'],note:''},
+    {n:'香炖牛杂(南溪巷)',addr:'南溪巷',d:['牛杂粿条'],note:''},
+  ]},
+  {area:'白粥·砂锅粥·鸭粥', shops:[
+    {n:'枫春白粥',addr:'枫春南路228号',d:['生腌咸膏蟹','生腌虾','薄壳米','腌生蚝','白粥'],note:'★ 潮州夜宵标杆，营业到凌晨3点，可外卖',star:true},
+    {n:'趣边白粥',addr:'潮州',d:['白粥','生腌','鱼饭'],note:''},
+    {n:'阿彬白粥',addr:'潮州',d:['白粥','生腌'],note:''},
+    {n:'邢记白粥',addr:'潮州',d:['白粥','生腌'],note:''},
+    {n:'阿凯白粥小炒',addr:'潮州',d:['白粥','小炒'],note:''},
+    {n:'小货车白粥',addr:'城新路大参林门口',d:['白粥','生腌'],note:'流动摊'},
+    {n:'潮盛砂锅粥',addr:'潮州',d:['海鲜砂锅粥'],note:''},
+    {n:'绿野砂锅粥潮州菜',addr:'潮州',d:['砂锅粥','潮州菜'],note:''},
+    {n:'皮蛋弟砂锅店',addr:'潮州',d:['皮蛋瘦肉粥'],note:''},
+    {n:'阿群砂锅粥',addr:'潮州',d:['海鲜砂锅粥'],note:''},
+    {n:'掠潮砂锅粥',addr:'潮州',d:['砂锅粥'],note:''},
+    {n:'阿荣砂锅粥',addr:'潮州',d:['砂锅粥'],note:''},
+    {n:'锐记老牌砂锅粥',addr:'潮州',d:['砂锅粥'],note:''},
+    {n:'煲佬囍砂锅粥',addr:'潮州',d:['砂锅粥'],note:''},
+    {n:'虎来顺潮州砂锅粥',addr:'潮州',d:['海鲜砂锅粥'],note:'煮的时间长，建议提前联系'},
+    {n:'老江鸭粥',addr:'潮州',d:['鸭粥'],note:''},
+    {n:'宫前鸭粥',addr:'潮州',d:['鸭粥'],note:''},
+    {n:'移动面包车鸭粥',addr:'金朝胜景楼下中国银行',d:['鸭粥'],note:'流动摊'},
+  ]},
+  {area:'鱼生·生腌', shops:[
+    {n:'官塘阿歪鱼生馆',addr:'电信路店/新洋路分店',d:['秘制咸膏蟹','虾生','生蚝','鱼生','生腌虾'],note:'★ 咸膏蟹像冰淇淋化开，5.0评分；噜噜别吃生腌',star:true},
+    {n:'官塘潮皖鱼生潮州生腌',addr:'潮州',d:['鱼生','生腌','咸膏蟹'],note:''},
+    {n:'官塘生记鱼生生腌',addr:'潮州',d:['鱼生','虾生','生腌'],note:''},
+    {n:'官塘阿忠鱼生',addr:'潮州',d:['鱼生','生腌'],note:''},
+    {n:'铭记鱼生',addr:'潮州',d:['鱼生','虾生'],note:''},
+    {n:'超派火锅城',addr:'潮州',d:['鱼生','生腌'],note:''},
+    {n:'巷内生腌',addr:'潮州',d:['生腌虾','生腌蟹','血蛤'],note:''},
+    {n:'圆蛋酒料',addr:'潮州',d:['生腌','酒料'],note:''},
+    {n:'嘉之派潮汕生腌',addr:'潮州',d:['生腌虾','生腌蟹','血蛤'],note:''},
+    {n:'品潮鱼生',addr:'潮州',d:['鱼生','虾生'],note:''},
+  ]},
+  {area:'炒粿条', shops:[
+    {n:'原西新炒粿条',addr:'趣春花园店',d:['炒粿条'],note:''},
+    {n:'西门鳝鱼粿条',addr:'西门',d:['鳝鱼炒粿条'],note:''},
+    {n:'南春炒粿条',addr:'南德园店',d:['炒粿条'],note:''},
+    {n:'乐口福炒粿条',addr:'潮州',d:['炒粿条'],note:''},
+    {n:'阿龙炒粿条',addr:'潮州',d:['炒粿条'],note:''},
+    {n:'原味海鲜炒粿条',addr:'潮州',d:['海鲜炒粿条'],note:''},
+    {n:'阿猴粿条汤',addr:'潮州',d:['粿条汤'],note:''},
+    {n:'财记肉丸店',addr:'潮州',d:['肉丸','粿条'],note:''},
+    {n:'阿永炒鱼肠粿条',addr:'潮州',d:['炒鱼肠粿条'],note:''},
+  ]},
+  {area:'牛杂炉·卤水火锅', shops:[
+    {n:'乌记鹅肠火锅',addr:'南德园店',d:['鹅肠','粉肝','鹅翅','鹅掌','猪大肠'],note:'★ 潮州最好吃卤水火锅，鹅血素菜随锅底赠送；噜噜可吃鹅血素菜',star:true},
+    {n:'英歌卤鼎',addr:'潮州',d:['卤水火锅','鹅杂'],note:''},
+    {n:'鼎仔围炉',addr:'潮州',d:['卤水火锅'],note:''},
+    {n:'蔡得好',addr:'潮州',d:['卤水火锅'],note:''},
+    {n:'谢三卤',addr:'潮州',d:['卤水火锅'],note:''},
+    {n:'诚信碳炉牛杂',addr:'潮州',d:['牛杂炉'],note:''},
+    {n:'小鼎牛煲',addr:'潮州',d:['牛杂','牛煲'],note:''},
+  ]},
+  {area:'鸡煲·鸭煲·羊肉火锅', shops:[
+    {n:'新桥路鸡纯鸡煲',addr:'新桥路',d:['鸡煲'],note:''},
+    {n:'广兴清远鸡',addr:'潮州',d:['鸡煲'],note:''},
+    {n:'北堤鸡煲',addr:'北堤',d:['鸡煲'],note:''},
+    {n:'鸡弟鸡煲火锅',addr:'潮州',d:['鸡煲'],note:''},
+    {n:'拾叁记吃个鸡煲',addr:'潮州',d:['鸡煲'],note:''},
+    {n:'绿滋源食坊',addr:'潮州',d:['鸡煲'],note:''},
+    {n:'芝记猪肚鸡',addr:'潮州',d:['猪肚鸡'],note:''},
+    {n:'秋溪酒寨鸡煲',addr:'潮州',d:['鸡煲'],note:''},
+    {n:'老三猪肚包鸡',addr:'潮州',d:['猪肚包鸡'],note:''},
+    {n:'新果林',addr:'潮州',d:['鸡煲'],note:''},
+    {n:'金田野生菇火锅',addr:'潮州',d:['野生菇火锅'],note:''},
+    {n:'曾记鸭肉火锅',addr:'潮州',d:['鸭肉火锅'],note:''},
+    {n:'鸡鸭煲羊肉火锅',addr:'潮州',d:['羊肉火锅'],note:''},
+    {n:'腰龟桥清补羊肉店',addr:'潮州',d:['清补羊肉'],note:''},
+    {n:'北堤熟地羊肉火锅',addr:'北堤',d:['熟地羊肉火锅'],note:''},
+  ]},
+  {area:'烤肉·烧烤', shops:[
+    {n:'阿涛碳烧烤盘',addr:'潮州',d:['烤盘','烤肉'],note:''},
+    {n:'南较特色烤盘',addr:'南较路',d:['烤盘'],note:''},
+    {n:'欢聚烤盘牛肉',addr:'潮州',d:['烤盘牛肉'],note:''},
+    {n:'炭烧烤盘牛肉烤鱼',addr:'潮州',d:['烤盘牛肉','烤鱼'],note:''},
+    {n:'千里马寻聚火烤肉肉',addr:'潮州',d:['烤肉'],note:''},
+    {n:'朝鲜火锅',addr:'潮州',d:['烤肉'],note:''},
+    {n:'快乐烧烤',addr:'潮州',d:['烧烤'],note:''},
+    {n:'阿杰烧烤',addr:'潮州',d:['烧烤'],note:''},
+    {n:'阿武烧烤',addr:'潮州',d:['烧烤'],note:''},
+    {n:'阿煌烧烤',addr:'潮州',d:['烧烤'],note:''},
+    {n:'培都烧烤水果汁',addr:'潮州',d:['烧烤','果汁'],note:''},
+    {n:'阿煜烧烤',addr:'潮州',d:['烧烤'],note:''},
+    {n:'文弟烧烤',addr:'潮州',d:['烧烤'],note:''},
+    {n:'阿红烧烤',addr:'潮州',d:['烧烤'],note:''},
+    {n:'阿典烧烤',addr:'潮州',d:['烧烤'],note:''},
+    {n:'阿布新鲜烤肉',addr:'潮州',d:['烤肉'],note:''},
+    {n:'老丁烧烤',addr:'潮州',d:['烧烤'],note:''},
+  ]},
+  {area:'私房菜', shops:[
+    {n:'潮州山海里高端私房菜',addr:'潮州',d:['高端潮州菜'],note:''},
+    {n:'元悦潮州菜',addr:'潮州',d:['潮州菜'],note:''},
+    {n:'福品堂私房菜',addr:'潮州',d:['私房菜'],note:''},
+    {n:'韩熙荟潮州私房菜',addr:'潮州',d:['私房菜'],note:''},
+    {n:'赫品私宴现代潮州菜',addr:'潮州',d:['现代潮州菜'],note:''},
+    {n:'1986贵宴',addr:'潮州',d:['潮州菜'],note:''},
+    {n:'豐澤軒',addr:'潮州',d:['潮州菜'],note:''},
+    {n:'韩宴私房菜',addr:'潮州',d:['私房菜'],note:''},
+    {n:'郑厨私房菜',addr:'潮州',d:['私房菜'],note:''},
+    {n:'张厨私房菜',addr:'潮州',d:['私房菜'],note:''},
+    {n:'格利潮州菜',addr:'潮州',d:['潮州菜'],note:''},
+    {n:'福宴',addr:'潮州',d:['潮州菜'],note:''},
+  ]},
+  {area:'大排档小炒', shops:[
+    {n:'阿彬猪肉汤',addr:'凤新街道陈桥村宾园路',d:['猪肉汤','粿条'],note:'潮州本地猪肉汤，人均实惠',star:true},
+    {n:'权兴小炒',addr:'潮州',d:['小炒'],note:''},
+    {n:'阿中小炒火锅',addr:'潮州',d:['小炒','火锅'],note:''},
+    {n:'阿文小炒',addr:'潮州',d:['小炒'],note:''},
+    {n:'阿明小炒',addr:'潮州',d:['小炒'],note:''},
+    {n:'阿龙小炒',addr:'潮州',d:['小炒'],note:''},
+    {n:'礼记小炒',addr:'潮州',d:['小炒'],note:''},
+    {n:'阿猪小炒',addr:'潮州',d:['小炒'],note:''},
+    {n:'阿燜排档',addr:'潮州',d:['排档'],note:''},
+    {n:'龙空农家菜',addr:'潮州',d:['农家菜'],note:''},
+    {n:'南苑家常菜',addr:'潮州',d:['家常菜'],note:''},
+    {n:'潮味小炒',addr:'潮州',d:['小炒'],note:''},
+    {n:'凤凰炒来炒去',addr:'潮州',d:['小炒'],note:''},
+    {n:'幼忠嫂家常菜',addr:'潮州',d:['家常菜'],note:''},
+    {n:'老董火锅',addr:'潮州',d:['小炒','火锅'],note:''},
+    {n:'淦冰小炒',addr:'潮州',d:['小炒'],note:''},
+  ]},
+  {area:'综合性餐厅', shops:[
+    {n:'韩上楼',addr:'凤洲西路凤凰洲公园旁',d:['虾饺皇','金沙鲜虾红米肠','荔湾艇仔粥','脆皮深井烧鹅','豉汁蒸凤爪','马拉糕'],note:'★ 潮州必吃广式早茶，环境优雅，韩江边上',star:true},
+    {n:'临江酒店中餐厅',addr:'潮州',d:['早茶','潮州菜'],note:'有早茶'},
+    {n:'唐宴',addr:'潮州',d:['潮州菜'],note:''},
+    {n:'潮潮居潮州菜',addr:'潮州',d:['潮州菜'],note:''},
+    {n:'潮膳楼潮州菜',addr:'潮州',d:['潮州菜'],note:''},
+    {n:'千潮宴潮州菜',addr:'潮州',d:['潮州菜'],note:''},
+    {n:'麒临阁大酒楼',addr:'潮州',d:['潮州菜'],note:''},
+    {n:'枫二酒楼',addr:'潮州',d:['潮州菜'],note:''},
+    {n:'福苑枫春海鲜大排档',addr:'潮州',d:['海鲜','潮州菜'],note:''},
+    {n:'潮江村海鲜城',addr:'潮州',d:['海鲜'],note:''},
+    {n:'豪欢潮州菜',addr:'潮州',d:['潮州菜'],note:''},
+    {n:'贵客来酒楼',addr:'潮州',d:['潮州菜'],note:''},
+    {n:'韩东食府',addr:'潮州',d:['潮州菜'],note:''},
+    {n:'益之堂',addr:'潮州',d:['潮州菜'],note:''},
+    {n:'荣德坊',addr:'潮州',d:['潮州菜'],note:''},
+    {n:'府城四少爷传统潮菜',addr:'潮州',d:['传统潮菜'],note:''},
+    {n:'吴祥记潮州菜',addr:'潮州',d:['潮州菜'],note:''},
+    {n:'鲜宴潮州私房菜',addr:'潮州',d:['私房菜'],note:''},
+    {n:'潮鑫荟潮州菜新派融合菜',addr:'潮州',d:['新派融合菜'],note:''},
+    {n:'韩府大院',addr:'潮州',d:['潮州菜'],note:''},
+    {n:'小岛食府私房菜',addr:'潮州',d:['私房菜'],note:''},
+    {n:'载阳家餐饮空间',addr:'潮州',d:['潮州菜'],note:''},
+  ]},
+];
+
+/* 汕头美食地图（按街区分组） */
+const ST_FOOD_MAP = [
+  {area:'龙眼南路', shops:[
+    {n:'跃进里炸腐乳鸡翅',addr:'龙眼南路bi吃榜',d:['腐乳鸡翅','猪脚圈','虾丸','牛肉丸'],note:'汕头首家腐乳炸鸡翅，刚出锅一咬爆汁外酥里嫩，8R一个'},
+    {n:'李财气牛肉火锅',addr:'龙眼南路',d:['鲜牛肉','牛肉粿条','沙茶干拌粿','手工牛肉丸','辣沙茶汤底'],note:'本地人排队都要去，2层楼；一楼粿条干拌，二楼火锅'},
+    {n:'屋里甜汤',addr:'龙眼南路',d:['草粿','鸭母捻','藕粉丸子'],note:''},
+    {n:'伟顺反沙屋',addr:'龙眼南路',d:['反沙芋头','反沙番薯'],note:'潮汕特色甜品，口感甜脆'},
+    {n:'糖葱薄饼类',addr:'龙眼南路',d:['糖葱薄饼'],note:'潮汕传统小吃，香脆有层次'},
+    {n:'小吴肠粉',addr:'龙眼南路',d:['全拼肠粉'],note:'生意好每次都要排队'},
+    {n:'甘草水果',addr:'龙眼南路',d:['甘草水果'],note:'水果切块拌糖、盐、甘草汁、南姜末'},
+    {n:'普宁反沙番薯芋头',addr:'龙眼南路',d:['反沙番薯','反沙芋头'],note:'刚出锅锅气十足，内里甜糯'},
+    {n:'广场老牌豆花甜汤',addr:'龙眼南路',d:['豆花','五果汤','绿豆爽'],note:'招牌豆花要点'},
+  ]},
+  {area:'珠江路', shops:[
+    {n:'珠江肠粉',addr:'珠江路',d:['牛肉肠粉'],note:'老牌肠粉店，馅料丰富牛肉多'},
+    {n:'五香人·外砂老桥头鹅肉饭',addr:'珠江路',d:['卤鹅拼盘','鹅肉饭'],note:'卤鹅拼盘每桌必点'},
+    {n:'永逸豆浆',addr:'珠江路（高铁站附近）',d:['夜豆浆'],note:'高铁站附近的夜豆浆，吃的人很多'},
+    {n:'林记猪肚',addr:'珠江路',d:['猪肚','猪杂'],note:'猪的各个部位都能吃到，很鲜美'},
+    {n:'细姨甜汤',addr:'珠江路',d:['姜薯汤','甜汤'],note:'新鲜现做糖水，用料扎实，推荐现煮姜薯汤'},
+    {n:'小吴肠粉',addr:'珠江路',d:['肠粉'],note:'排队的人也很多'},
+    {n:'桥下猪肚',addr:'珠江路',d:['猪肚','猪肉'],note:'份量很足，猪肉很嫩吃不腻'},
+  ]},
+  {area:'金新南路', shops:[
+    {n:'金新肠粉',addr:'金新南路',d:['肠粉'],note:'开了30几年的老店，生意每天都很好'},
+    {n:'金新粿汁',addr:'金新南路',d:['粿汁','卤蛋','猪大肠'],note:'酱香浓郁的卤汁配上卤蛋和猪大肠'},
+    {n:'戏布袋凉茶',addr:'金新南路',d:['凉茶'],note:'既是凉茶也是小孩子的中药'},
+    {n:'金新卤味',addr:'金新南路',d:['鸭脖','鸭爪','鸭锁骨'],note:'每天现卤，本地人很爱'},
+    {n:'点个zan煎饺',addr:'金新南路',d:['煎饺'],note:'皮薄馅香，一咬还爆汁'},
+    {n:'福合埕无米粿甜汤',addr:'金新南路',d:['无米粿','甜汤'],note:'潮汕传统小吃甜汤都可以吃到'},
+    {n:'阿奇手拍菜汁面',addr:'金新南路',d:['菜汁面'],note:'本地人常去吃的苍蝇馆子'},
+  ]},
+  {area:'跃进里十二中', shops:[
+    {n:'正十二中煎饺',addr:'跃进里十二中',d:['煎饺'],note:'煎得金黄焦脆，蔬菜油香浓郁'},
+    {n:'十二中草莓冰·红豆沙冰屋',addr:'跃进里十二中',d:['草莓冰沙','红豆沙冰'],note:'新鲜草莓鲜榨冰沙，酸甜可口'},
+    {n:'无骨香鸡柳',addr:'跃进里十二中',d:['香鸡柳'],note:'鸡柳炸得香脆，适合边走边吃'},
+    {n:'好心情铁板烧',addr:'跃进里十二中',d:['炸串'],note:'炸串种类丰富'},
+    {n:'一杯潮茶',addr:'跃进里十二中',d:['翠枝玉露'],note:'翠枝玉露真的很爱喝'},
+    {n:'跃进甜汤鲎粿',addr:'跃进里十二中',d:['鲎粿','炸芋泥粿'],note:'咸口内陷带肉，炸芋泥粿很好吃'},
+    {n:'跃进里炸腐乳鸡翅',addr:'跃进里十二中',d:['腐乳鸡翅'],note:'炸腐乳鸡翅外皮酥脆，肉质鲜嫩'},
+    {n:'老福平张记杏仁茶芝麻',addr:'跃进里十二中',d:['杏仁茶','芝麻茶'],note:'店里杏仁茶芝麻茶都只要5R'},
+    {n:'商平无米粿',addr:'跃进里十二中',d:['无米粿','鲎粿'],note:'鲎粿个头小馅料少，无米粿炸得很脆'},
+  ]},
+  {area:'老市区 / 小公园', shops:[
+    {n:'三姐妹肠粉',addr:'小公园附近',d:['牛肉肠粉'],note:'本地人从小吃到大，24h营业，皮薄馅多牛肉嫩'},
+    {n:'非遗·老山合·潮汕特色猪头粽',addr:'老市区',d:['猪头粽','猪肉脯片','潮汕三宝'],note:'汕头有名特产店，明码标价免费试吃，有汕头打卡墙可拍照'},
+    {n:'雨伞街老牌牛肉店',addr:'雨伞街',d:['牛肉丸粿条汤'],note:'牛肉丸粿条汤吃不腻'},
+    {n:'小公园老牌粽球',addr:'小公园',d:['粽球'],note:'馅料丰富，吃起来油而不腻'},
+    {n:'杉排福平坊',addr:'杉排路',d:['芝麻糊','杏仁糊'],note:'三代人传承的老店'},
+    {n:'老牌炒糕粿',addr:'老市区',d:['蚝烙','无米粿'],note:'现煎的蚝烙和无米粿进店必点'},
+    {n:'雷记饼食店',addr:'老市区',d:['膀饺','春卷','小米'],note:'40年的饼食店，闭眼点'},
+    {n:'广场老牌豆花甜汤',addr:'老市区',d:['豆花','鸭母捻','绿豆爽'],note:'豆花搭配鸭母捻、绿豆爽'},
+    {n:'鱼肠米粉',addr:'老市区',d:['鱼肠米粉'],note:'去晚了就吃不到，汤底很鲜美'},
+    {n:'老二炒粿',addr:'老市区',d:['牛肉炒粿','苦瓜汤'],note:''},
+  ]},
+  {area:'欧汀美食街', shops:[
+    {n:'老牌富兴小食',addr:'欧汀美食街',d:['第鱼烙'],note:'种类齐全的小食店，第鱼烙一定要吃'},
+    {n:'雄香蚝烙',addr:'欧汀美食街',d:['蚝烙'],note:'主打蚝烙，两面煎得金黄松脆'},
+    {n:'李记老牌豆腐花',addr:'欧汀美食街',d:['豆腐花'],note:'开了近百年的老店，豆腐花很滑嫩'},
+    {n:'亚丰甜汤舶粥',addr:'欧汀美食街',d:['甜汤','粥'],note:'本地人扎堆的小店，吃不腻'},
+    {n:'老三麦粿',addr:'欧汀美食街',d:['麦粿'],note:'外皮香香酥酥，内里甜而不腻，麦粿香'},
+    {n:'老牌卤甜蛋薏米猪脚',addr:'欧汀美食街',d:['薏米猪脚','五果汤'],note:'薏米猪脚、五果汤是招牌'},
+  ]},
+  {area:'其他推荐', shops:[
+    {n:'鸿运临·鹧鸪饭',addr:'高铁站附近',d:['鹧鸪饭','椒盐鹧鸪','玉米烙'],note:'石橄榄汤底清甜，鹧鸪肉紧实滑嫩，椒盐鹧鸪金黄酥脆爆汁'},
+    {n:'觅食燕·潮汕生腌',addr:'汕头',d:['生腌生蚝','生腌皮皮虾','生腌鲍鱼','生腌血蛤','生腌小青龙'],note:'本地人扎堆，每天现做明码标价；生腌噜噜别吃'},
+    {n:'共和老洪豆花草粿水粿',addr:'共和市场旁巷子',d:['豆花','草粿','水粿'],note:'豆花黏糊糊配红糖芝麻花生粉，草粿清爽配豆花'},
+    {n:'金不换白粥',addr:'汕头',d:['海鲜砂锅粥','生腌'],note:'人均40多吃到撑，明档海鲜池点菜，海鲜砂锅粥每桌必点'},
+    {n:'古市卤鼎·非遗卤水火锅',addr:'汕头',d:['鲜牛肉','狮头鹅肠','皮皮虾'],note:'古色古香装修，卤水锅底超正，煮啥都好吃'},
+    {n:'非遗·苏南勤记卤鹅',addr:'汕头',d:['卤鹅拼盘','鹅粉肝','鹅胗','鹅肉'],note:'上过央视非遗老字号，鹅肉卤得超香超入味'},
+    {n:'三代人甜汤',addr:'汕头',d:['姜薯鸭母捻','五果汤','清心丸绿豆爽'],note:'本地人扎堆，真材实料每日现熬'},
+    {n:'龙北南兴丸店·非遗',addr:'龙北',d:['牛筋丸','海鱼雷','白胖鱼雷','墨鱼丸'],note:'40多年非遗老字号，60多种丸子可全国邮寄，适合伴手礼'},
+  ]},
+  {area:'肠粉', shops:[
+    {n:'小吴肠粉',addr:'龙眼南路',d:['全拼肠粉'],note:'生意好每次都要排队'},
+    {n:'珠江肠粉',addr:'珠江路',d:['牛肉肠粉'],note:'老牌肠粉店，馅料丰富牛肉多'},
+    {n:'小吴肠粉',addr:'珠江路',d:['肠粉'],note:'排队的人也很多'},
+    {n:'金新肠粉',addr:'金新南路',d:['肠粉'],note:'开了30几年的老店，生意每天都很好'},
+    {n:'三姐妹肠粉',addr:'小公园附近',d:['牛肉肠粉'],note:'本地人从小吃到大，24h营业，皮薄馅多牛肉嫩',star:true},
+  ]},
+  {area:'粿条汤·粿汁', shops:[
+    {n:'林记猪肚',addr:'珠江路',d:['猪肚','猪杂'],note:'猪的各个部位都能吃到，很鲜美'},
+    {n:'桥下猪肚',addr:'珠江路',d:['猪肚','猪肉'],note:'份量很足，猪肉很嫩吃不腻'},
+    {n:'雨伞街老牌牛肉店',addr:'雨伞街',d:['牛肉丸粿条汤'],note:'牛肉丸粿条汤吃不腻'},
+    {n:'金新粿汁',addr:'金新南路',d:['粿汁','卤蛋','猪大肠'],note:'酱香浓郁的卤汁配上卤蛋和猪大肠'},
+  ]},
+  {area:'炒粿条', shops:[
+    {n:'老二炒粿',addr:'老市区',d:['牛肉炒粿','苦瓜汤'],note:''},
+  ]},
+  {area:'牛肉火锅·卤水火锅', shops:[
+    {n:'李财气牛肉火锅',addr:'龙眼南路',d:['鲜牛肉','牛肉粿条','沙茶干拌粿','手工牛肉丸','辣沙茶汤底'],note:'本地人排队都要去，2层楼；一楼粿条干拌，二楼火锅',star:true},
+    {n:'古市卤鼎·非遗卤水火锅',addr:'汕头',d:['鲜牛肉','狮头鹅肠','皮皮虾'],note:'古色古香装修，卤水锅底超正，煮啥都好吃',star:true},
+  ]},
+  {area:'生腌·卤味', shops:[
+    {n:'五香人·外砂老桥头鹅肉饭',addr:'珠江路',d:['卤鹅拼盘','鹅肉饭'],note:'卤鹅拼盘每桌必点'},
+    {n:'金新卤味',addr:'金新南路',d:['鸭脖','鸭爪','鸭锁骨'],note:'每天现卤，本地人很爱'},
+    {n:'非遗·老山合·潮汕特色猪头粽',addr:'老市区',d:['猪头粽','猪肉脯片','潮汕三宝'],note:'汕头有名特产店，明码标价免费试吃，有汕头打卡墙可拍照'},
+    {n:'非遗·苏南勤记卤鹅',addr:'汕头',d:['卤鹅拼盘','鹅粉肝','鹅胗','鹅肉'],note:'上过央视非遗老字号，鹅肉卤得超香超入味',star:true},
+    {n:'觅食燕·潮汕生腌',addr:'汕头',d:['生腌生蚝','生腌皮皮虾','生腌鲍鱼','生腌血蛤','生腌小青龙'],note:'本地人扎堆，每天现做明码标价；生腌噜噜别吃'},
+  ]},
+  {area:'甜汤甜品', shops:[
+    {n:'屋里甜汤',addr:'龙眼南路',d:['草粿','鸭母捻','藕粉丸子'],note:''},
+    {n:'广场老牌豆花甜汤',addr:'龙眼南路',d:['豆花','五果汤','绿豆爽'],note:'招牌豆花要点'},
+    {n:'细姨甜汤',addr:'珠江路',d:['姜薯汤','甜汤'],note:'新鲜现做糖水，用料扎实，推荐现煮姜薯汤'},
+    {n:'十二中草莓冰·红豆沙冰屋',addr:'跃进里十二中',d:['草莓冰沙','红豆沙冰'],note:'新鲜草莓鲜榨冰沙，酸甜可口'},
+    {n:'杉排福平坊',addr:'杉排路',d:['芝麻糊','杏仁糊'],note:'三代人传承的老店'},
+    {n:'广场老牌豆花甜汤',addr:'老市区',d:['豆花','鸭母捻','绿豆爽'],note:'豆花搭配鸭母捻、绿豆爽'},
+    {n:'李记老牌豆腐花',addr:'欧汀美食街',d:['豆腐花'],note:'开了近百年的老店，豆腐花很滑嫩'},
+    {n:'亚丰甜汤舶粥',addr:'欧汀美食街',d:['甜汤','粥'],note:'本地人扎堆的小店，吃不腻'},
+    {n:'老牌卤甜蛋薏米猪脚',addr:'欧汀美食街',d:['薏米猪脚','五果汤'],note:'薏米猪脚、五果汤是招牌'},
+    {n:'共和老洪豆花草粿水粿',addr:'共和市场旁巷子',d:['豆花','草粿','水粿'],note:'豆花黏糊糊配红糖芝麻花生粉，草粿清爽配豆花'},
+    {n:'三代人甜汤',addr:'汕头',d:['姜薯鸭母捻','五果汤','清心丸绿豆爽'],note:'本地人扎堆，真材实料每日现熬'},
+    {n:'老福平张记杏仁茶芝麻',addr:'跃进里十二中',d:['杏仁茶','芝麻茶'],note:'店里杏仁茶芝麻茶都只要5R'},
+  ]},
+  {area:'小吃炸物', shops:[
+    {n:'跃进里炸腐乳鸡翅',addr:'龙眼南路bi吃榜',d:['腐乳鸡翅','猪脚圈','虾丸','牛肉丸'],note:'汕头首家腐乳炸鸡翅，刚出锅一咬爆汁外酥里嫩，8R一个'},
+    {n:'伟顺反沙屋',addr:'龙眼南路',d:['反沙芋头','反沙番薯'],note:'潮汕特色甜品，口感甜脆'},
+    {n:'糖葱薄饼类',addr:'龙眼南路',d:['糖葱薄饼'],note:'潮汕传统小吃，香脆有层次'},
+    {n:'甘草水果',addr:'龙眼南路',d:['甘草水果'],note:'水果切块拌糖、盐、甘草汁、南姜末'},
+    {n:'普宁反沙番薯芋头',addr:'龙眼南路',d:['反沙番薯','反沙芋头'],note:'刚出锅锅气十足，内里甜糯'},
+    {n:'点个zan煎饺',addr:'金新南路',d:['煎饺'],note:'皮薄馅香，一咬还爆汁'},
+    {n:'福合埕无米粿甜汤',addr:'金新南路',d:['无米粿','甜汤'],note:'潮汕传统小吃甜汤都可以吃到'},
+    {n:'正十二中煎饺',addr:'跃进里十二中',d:['煎饺'],note:'煎得金黄焦脆，蔬菜油香浓郁'},
+    {n:'无骨香鸡柳',addr:'跃进里十二中',d:['香鸡柳'],note:'鸡柳炸得香脆，适合边走边吃'},
+    {n:'好心情铁板烧',addr:'跃进里十二中',d:['炸串'],note:'炸串种类丰富'},
+    {n:'跃进甜汤鲎粿',addr:'跃进里十二中',d:['鲎粿','炸芋泥粿'],note:'咸口内陷带肉，炸芋泥粿很好吃'},
+    {n:'跃进里炸腐乳鸡翅',addr:'跃进里十二中',d:['腐乳鸡翅'],note:'炸腐乳鸡翅外皮酥脆，肉质鲜嫩'},
+    {n:'商平无米粿',addr:'跃进里十二中',d:['无米粿','鲎粿'],note:'鲎粿个头小馅料少，无米粿炸得很脆'},
+    {n:'老牌炒糕粿',addr:'老市区',d:['蚝烙','无米粿'],note:'现煎的蚝烙和无米粿进店必点'},
+    {n:'雷记饼食店',addr:'老市区',d:['膀饺','春卷','小米'],note:'40年的饼食店，闭眼点'},
+    {n:'老牌富兴小食',addr:'欧汀美食街',d:['第鱼烙'],note:'种类齐全的小食店，第鱼烙一定要吃'},
+    {n:'雄香蚝烙',addr:'欧汀美食街',d:['蚝烙'],note:'主打蚝烙，两面煎得金黄松脆'},
+    {n:'老三麦粿',addr:'欧汀美食街',d:['麦粿'],note:'外皮香香酥酥，内里甜而不腻，麦粿香'},
+  ]},
+  {area:'白粥·砂锅粥', shops:[
+    {n:'亚丰甜汤舶粥',addr:'欧汀美食街',d:['甜汤','粥'],note:'本地人扎堆的小店，吃不腻'},
+    {n:'金不换白粥',addr:'汕头',d:['海鲜砂锅粥','生腌'],note:'人均40多吃到撑，明档海鲜池点菜，海鲜砂锅粥每桌必点'},
+  ]},
+  {area:'其他', shops:[
+    {n:'永逸豆浆',addr:'珠江路（高铁站附近）',d:['夜豆浆'],note:'高铁站附近的夜豆浆，吃的人很多'},
+    {n:'戏布袋凉茶',addr:'金新南路',d:['凉茶'],note:'既是凉茶也是小孩子的中药'},
+    {n:'阿奇手拍菜汁面',addr:'金新南路',d:['菜汁面'],note:'本地人常去吃的苍蝇馆子'},
+    {n:'一杯潮茶',addr:'跃进里十二中',d:['翠枝玉露'],note:'翠枝玉露真的很爱喝'},
+    {n:'小公园老牌粽球',addr:'小公园',d:['粽球'],note:'馅料丰富，吃起来油而不腻'},
+    {n:'鱼肠米粉',addr:'老市区',d:['鱼肠米粉'],note:'去晚了就吃不到，汤底很鲜美'},
+    {n:'鸿运临·鹧鸪饭',addr:'高铁站附近',d:['鹧鸪饭','椒盐鹧鸪','玉米烙'],note:'石橄榄汤底清甜，鹧鸪肉紧实滑嫩，椒盐鹧鸪金黄酥脆爆汁'},
+    {n:'龙北南兴丸店·非遗',addr:'龙北',d:['牛筋丸','海鱼雷','白胖鱼雷','墨鱼丸'],note:'40多年非遗老字号，60多种丸子可全国邮寄，适合伴手礼',star:true},
+  ]},
+];
+
+/* 揭阳美食地图（按分类/时段分组） */
+const JY_FOOD_MAP = [
+  {area:'早餐', shops:[
+    {n:'飞燕粿汁',addr:'揭阳',d:['粿汁','卤苦瓜'],note:'卤苦瓜必点'},
+    {n:'西湖老牌杏仁茶',addr:'中山街道',d:['杏仁茶','豆浆杏仁糊'],note:'推荐豆浆杏仁糊都好吃'},
+  ]},
+  {area:'午餐', shops:[
+    {n:'东湖路毓秀牛肉粿条',addr:'东湖路',d:['牛肉粿条','炒粿'],note:'炒粿必点，火锅一般'},
+    {n:'巷畔毓秀糕粿',addr:'巷畔',d:['糕粿'],note:'12.15元，按需买'},
+    {n:'阿喜干面',addr:'实验中学（东兴街道）斜对面',d:['干面'],note:'甜咸都好吃'},
+  ]},
+  {area:'下午茶', shops:[
+    {n:'巷畔街小吃',addr:'巷畔街',d:['咸香饼','鲜肉饼','反沙油甘','甘梅薯条'],note:'大吉利推荐反沙油甘+圣女果，酥肉+甘梅薯条'},
+    {n:'飞燕麦佳香',addr:'飞燕',d:['泡芙','肠仔包'],note:'推荐泡芙+肠仔包'},
+    {n:'飞燕坊',addr:'飞燕',d:['包子'],note:'下午四点新鲜出炉，人多要排队'},
+    {n:'飞燕三毛Q饼',addr:'飞燕',d:['咸蛋黄黄烧饼'],note:'强烈推荐咸蛋黄黄烧饼'},
+    {n:'汇康凉茶（路边炸串摊）',addr:'香槟公馆附近',d:['虾饼','腐乳肉串'],note:'大妈大爷推车炸东西，点虾饼+腐乳肉串'},
+  ]},
+  {area:'晚餐宵夜', shops:[
+    {n:'东湖路文达酥鸡煲',addr:'东湖路',d:['酥鸡煲','小吃'],note:'鸡煲和小吃都不错'},
+    {n:'上义聚源炒米粉',addr:'上义',d:['炒米粉','炒石螺'],note:'推荐炒石螺，炒米粉+醋超酸爽'},
+    {n:'东一石磨肠粉',addr:'东一路',d:['肠粉'],note:''},
+    {n:'老牌蒸饺',addr:'邱金元纪念中学对面',d:['蒸饺'],note:''},
+    {n:'东一路林姐烧烤',addr:'东一路',d:['大鸡排','烧烤'],note:'大鸡排必拿'},
+    {n:'冰弟酸菜鱼',addr:'揭阳',d:['酸菜鱼'],note:''},
+    {n:'鳝鱼面',addr:'啊粿鱼隔壁 / 熊翠阁隔壁',d:['鳝鱼面'],note:'两家都好吃'},
+    {n:'东山卢记牛肉火锅',addr:'东山',d:['牛肉火锅'],note:'一盘肉100块按需点，套餐点比较划算'},
+    {n:'同德路莲华素食府',addr:'同德路',d:['斋菜'],note:'斋菜做的不错，推荐按餐点'},
+  ]},
+  {area:'分类精选', shops:[
+    {n:'卢记牛肉店',addr:'揭阳',d:['牛肉火锅'],note:'牛肉品质稳定，摆盘易出片，价格透明'},
+    {n:'甜甜炸揭阳小吃店',addr:'揭阳',d:['反沙咸蛋黄'],note:'非常多本地特色小吃，现做的反沙咸蛋黄超好吃'},
+    {n:'进安街大排档 / 阿忠 / 车头老二',addr:'进安街',d:['热炒生腌','卤拼鱼饭'],note:'菜品丰富烟火气足'},
+    {n:'熊翠阁 / 源记 / 阿龙',addr:'揭阳',d:['鳝鱼面'],note:''},
+    {n:'好味道 / 榕城武庙夜宵摊',addr:'榕城武庙斜对面',d:['蚝烙'],note:''},
+    {n:'砲台粿汁仁港店 / 佳弟 / 西头乡',addr:'揭阳',d:['粿汁'],note:''},
+    {n:'乌八 / 派记柠檬面 / 大头熟地面',addr:'揭阳',d:['汤面'],note:''},
+    {n:'列元 / 新街桥头（后街男孩）',addr:'揭阳',d:['腐乳炒粿'],note:''},
+    {n:'开心面馆 / 兴面馆（丹桂园干面）',addr:'揭阳',d:['炒面','干面'],note:''},
+    {n:'肥兄 / 陋室铭 / 飞燕肠粉',addr:'揭阳',d:['肠粉'],note:''},
+    {n:'林记饺子店 / 肥姐 / 老铁',addr:'揭阳',d:['蒸饺'],note:''},
+    {n:'埔上白切鹅 / 南厝汉弟',addr:'揭阳',d:['鹅鸭肉'],note:''},
+    {n:'银河 / 东兴 / 德兴',addr:'揭阳',d:['砂锅粥'],note:''},
+    {n:'尚牛 / 标记霖磐 / 曾记',addr:'揭阳',d:['牛肉炒粿'],note:''},
+    {n:'老北食鲜烤牛肉 / 江夏兄弟牛肉',addr:'揭阳',d:['烤牛肉串'],note:''},
+    {n:'贤记双皮奶 / 聚品甜品芝麻糊 / 杨记',addr:'揭阳',d:['双皮奶','芝麻糊'],note:''},
+    {n:'瓦爱邓记 / COFFEE GROWT',addr:'揭阳',d:['饮品'],note:''},
+    {n:'顾家冰淇淋 / 珉敏家',addr:'揭阳',d:['冰淇淋刨冰'],note:''},
+    {n:'亚隆隆江猪脚饭',addr:'揭阳',d:['隆江猪脚饭'],note:''},
+  ]},
+  {area:'肠粉', shops:[
+    {n:'东一石磨肠粉',addr:'东一路',d:['肠粉'],note:''},
+    {n:'肥兄 / 陋室铭 / 飞燕肠粉',addr:'揭阳',d:['肠粉'],note:''},
+  ]},
+  {area:'粿汁·粿条·糕粿', shops:[
+    {n:'飞燕粿汁',addr:'揭阳',d:['粿汁','卤苦瓜'],note:'卤苦瓜必点'},
+    {n:'东湖路毓秀牛肉粿条',addr:'东湖路',d:['牛肉粿条','炒粿'],note:'炒粿必点，火锅一般'},
+    {n:'巷畔毓秀糕粿',addr:'巷畔',d:['糕粿'],note:'12.15元，按需买'},
+    {n:'砲台粿汁仁港店 / 佳弟 / 西头乡',addr:'揭阳',d:['粿汁'],note:''},
+  ]},
+  {area:'炒粿条·炒面', shops:[
+    {n:'东湖路毓秀牛肉粿条',addr:'东湖路',d:['牛肉粿条','炒粿'],note:'炒粿必点，火锅一般'},
+    {n:'列元 / 新街桥头（后街男孩）',addr:'揭阳',d:['腐乳炒粿'],note:''},
+    {n:'尚牛 / 标记霖磐 / 曾记',addr:'揭阳',d:['牛肉炒粿'],note:''},
+    {n:'阿喜干面',addr:'实验中学（东兴街道）斜对面',d:['干面'],note:'甜咸都好吃'},
+    {n:'开心面馆 / 兴面馆（丹桂园干面）',addr:'揭阳',d:['炒面','干面'],note:''},
+  ]},
+  {area:'牛肉火锅', shops:[
+    {n:'东山卢记牛肉火锅',addr:'东山',d:['牛肉火锅'],note:'一盘肉100块按需点，套餐点比较划算',star:true},
+    {n:'卢记牛肉店',addr:'揭阳',d:['牛肉火锅'],note:'牛肉品质稳定，摆盘易出片，价格透明'},
+  ]},
+  {area:'鸡煲', shops:[
+    {n:'东湖路文达酥鸡煲',addr:'东湖路',d:['酥鸡煲','小吃'],note:'鸡煲和小吃都不错'},
+  ]},
+  {area:'烤肉·烧烤', shops:[
+    {n:'东一路林姐烧烤',addr:'东一路',d:['大鸡排','烧烤'],note:'大鸡排必拿'},
+    {n:'老北食鲜烤牛肉 / 江夏兄弟牛肉',addr:'揭阳',d:['烤牛肉串'],note:''},
+  ]},
+  {area:'生腌·卤味', shops:[
+    {n:'埔上白切鹅 / 南厝汉弟',addr:'揭阳',d:['鹅鸭肉'],note:''},
+    {n:'进安街大排档 / 阿忠 / 车头老二',addr:'进安街',d:['热炒生腌','卤拼鱼饭'],note:'菜品丰富烟火气足'},
+  ]},
+  {area:'甜汤甜品', shops:[
+    {n:'西湖老牌杏仁茶',addr:'中山街道',d:['杏仁茶','豆浆杏仁糊'],note:'推荐豆浆杏仁糊都好吃'},
+    {n:'贤记双皮奶 / 聚品甜品芝麻糊 / 杨记',addr:'揭阳',d:['双皮奶','芝麻糊'],note:''},
+    {n:'顾家冰淇淋 / 珉敏家',addr:'揭阳',d:['冰淇淋刨冰'],note:''},
+  ]},
+  {area:'小吃炸物', shops:[
+    {n:'巷畔街小吃',addr:'巷畔街',d:['咸香饼','鲜肉饼','反沙油甘','甘梅薯条'],note:'大吉利推荐反沙油甘+圣女果，酥肉+甘梅薯条'},
+    {n:'飞燕三毛Q饼',addr:'飞燕',d:['咸蛋黄黄烧饼'],note:'强烈推荐咸蛋黄黄烧饼'},
+    {n:'汇康凉茶（路边炸串摊）',addr:'香槟公馆附近',d:['虾饼','腐乳肉串'],note:'大妈大爷推车炸东西，点虾饼+腐乳肉串'},
+    {n:'老牌蒸饺',addr:'邱金元纪念中学对面',d:['蒸饺'],note:''},
+    {n:'甜甜炸揭阳小吃店',addr:'揭阳',d:['反沙咸蛋黄'],note:'非常多本地特色小吃，现做的反沙咸蛋黄超好吃'},
+    {n:'好味道 / 榕城武庙夜宵摊',addr:'榕城武庙斜对面',d:['蚝烙'],note:''},
+    {n:'林记饺子店 / 肥姐 / 老铁',addr:'揭阳',d:['蒸饺'],note:''},
+  ]},
+  {area:'白粥·砂锅粥', shops:[
+    {n:'银河 / 东兴 / 德兴',addr:'揭阳',d:['砂锅粥'],note:''},
+  ]},
+  {area:'其他', shops:[
+    {n:'飞燕麦佳香',addr:'飞燕',d:['泡芙','肠仔包'],note:'推荐泡芙+肠仔包'},
+    {n:'飞燕坊',addr:'飞燕',d:['包子'],note:'下午四点新鲜出炉，人多要排队'},
+    {n:'上义聚源炒米粉',addr:'上义',d:['炒米粉','炒石螺'],note:'推荐炒石螺，炒米粉+醋超酸爽'},
+    {n:'冰弟酸菜鱼',addr:'揭阳',d:['酸菜鱼'],note:''},
+    {n:'鳝鱼面',addr:'啊粿鱼隔壁 / 熊翠阁隔壁',d:['鳝鱼面'],note:'两家都好吃'},
+    {n:'熊翠阁 / 源记 / 阿龙',addr:'揭阳',d:['鳝鱼面'],note:''},
+    {n:'乌八 / 派记柠檬面 / 大头熟地面',addr:'揭阳',d:['汤面'],note:''},
+    {n:'同德路莲华素食府',addr:'同德路',d:['斋菜'],note:'斋菜做的不错，推荐按餐点'},
+    {n:'瓦爱邓记 / COFFEE GROWT',addr:'揭阳',d:['饮品'],note:''},
+    {n:'亚隆隆江猪脚饭',addr:'揭阳',d:['隆江猪脚饭'],note:''},
+  ]},
+];
+
+const BOOKINGS = [
+  {type:'train', title:'D2311 泉州 → 潮汕', time:'10/1 08:57 — 11:08', meta:'02车05B 二等座 · 候车室2号检票口 · 历时2h11m', color:'#2f7a6b', icon:ICON.train, loc:['qz','cs']},
+  {type:'hotel', title:'潮州古城潮枫路亚朵酒店', time:'10/1 入住 — 10/2 退房 · 雅致大床房', meta:'潮州市湘桥区潮枫路117号<br><span class="hi">0768-2288822</span>', color:'#c45a3c', icon:ICON.hotel, loc:'czHotel'},
+  {type:'train', title:'G8484 汕头 → 揭阳', time:'10/2 18:40 — 19:28', meta:'06车18C 二等座 · 历时48分钟', color:'#2f7a6b', icon:ICON.train, loc:['stz','jyz']},
+  {type:'hotel', title:'揭阳楼揭阳大道亚朵酒店 (V3.6)', time:'10/2 入住 — 10/3 退房 · 行政大床房', meta:'揭阳市榕城区环市北路万景广场5幢<br><span class="hi">电话请在亚朵App查询</span>', color:'#7a5a9e', icon:ICON.hotel, loc:'jyHotel'},
+  {type:'train', title:'G8483 揭阳 → 潮汕', time:'10/3 17:30 — 17:53', meta:'03车04F 二等座 · 历时23分钟', color:'#2f7a6b', icon:ICON.train, loc:['jyz','cs']},
+  {type:'train', title:'D2326 潮汕 → 泉州', time:'10/3 18:10 — 20:05', meta:'同站换乘17分钟 · 便捷换乘不出站', color:'#2f7a6b', icon:ICON.train, loc:['cs','qz']},
+];
+
+const DAYS = [
+  {date:'10/1', title:'潮州古城', color:'#c45a3c', items:[
+    {time:'08:57', t:'D2311 泉州→潮汕', d:'02车05B，候车室2号检票口。备零食绘本', loc:['qz','cs'], type:'train'},
+    {time:'11:08', t:'抵达潮汕站', d:'出站用滴滴叫车，别坐拉客黑车', loc:'cs', type:'taxi'},
+    {time:'11:15', t:'打车 → 潮州亚朵酒店', d:'约20km，30-40分钟，约60-80元', loc:'czHotel', type:'taxi'},
+    {time:'12:00', t:'午餐 · 潮泰牛肉火锅', d:'创于1992年老字号，湿炒牛河、吊龙、雪花；噜噜吃清汤嫩肉', loc:'chaotai', type:'food', foodKey:'chaotai'},
+    {time:'13:00', t:'回酒店午休', d:'噜噜睡1.5-2小时，爸妈休整', loc:'czHotel', type:'rest'},
+    {time:'15:00', t:'牌坊街 → 开元寺', d:'免费，推车可进；唐代古寺', loc:'pafang', type:'sight', sightKey:'pafang'},
+    {time:'15:40', t:'小吃 · 牌坊街', d:'胡荣泉鸭母捻、春卷；甘草水果边走边吃', loc:'pafang', type:'food'},
+    {time:'16:00', t:'广济桥', d:'门票20元/人（1.2m以下免费），17:00停止入场', loc:'guangji', type:'sight', book:true, sightKey:'guangji',
+      alert:'17:30拆浮桥（过河拆桥奇观）必看；国庆灯光秀20:00/21:30两场'},
+    {time:'17:00', t:'小吃 · 西马路', d:'牛杂粿条、鱼饺汤、手打牛肉丸', loc:'xima', type:'food', foodKey:'xima'},
+    {time:'17:45', t:'小吃 · 广济楼周边', d:'糖葱薄饼、肠粉、腐乳鸡翅', loc:'guangji', type:'food'},
+    {time:'19:30', t:'晚餐 · 潮汕砂锅粥', d:'鲜虾/膏蟹砂锅粥，粥水浓稠；噜噜吃不加盐的粥', loc:'zhou', type:'food', foodKey:'zhou'},
+    {time:'20:00', t:'广济桥灯光秀', d:'江边风大，给噜噜带薄外套', loc:'guangji', type:'sight'},
+    {time:'21:30', t:'夜宵 · 枫春白粥（外卖）', d:'噜噜睡后美团叫生腌咸膏蟹、薄壳米、白粥；营业到凌晨3点', loc:'fengchun', type:'food', foodKey:'fengchun'},
+  ]},
+  {date:'10/2', title:'汕头 → 揭阳', color:'#3a7d6e', items:[
+    {time:'08:30', t:'酒店早餐', d:'亚朵早餐，噜噜吃粥蛋馒头', loc:'czHotel', type:'food'},
+    {time:'09:30', t:'潮州西湖散步', d:'距酒店0.8km步行10分钟，清晨人少凉快', loc:'xihu', type:'sight', sightKey:'xihu'},
+    {time:'10:00', t:'小吃 · 西湖旁', d:'杏仁茶、豆花、芝麻茶，暖胃小食', loc:'xihu', type:'food'},
+    {time:'10:30', t:'退房取行李', d:'延迟退房到18:00，但今天去汕头，正常退房', loc:'czHotel', type:'hotel'},
+    {time:'11:00', t:'打车 → 汕头小公园', d:'约42km，50-60分钟，约130-150元', loc:'xpark', type:'taxi'},
+    {time:'12:00', t:'午餐 · 小公园老字号', d:'爱西干面（干面+猪杂汤）、老妈宫双烹粽球', loc:'aixi', type:'food', foodKey:'aixi'},
+    {time:'13:30', t:'寄存行李', d:'「存知己」App找小公园附近寄存点，5-10元/件', loc:'xpark', type:'note'},
+    {time:'14:00', t:'小公园开埠区漫游', d:'中山纪念亭、老妈宫戏台、开埠文化陈列馆；推车慢慢逛，噜噜困了自然睡', loc:'xpark', type:'sight', sightKey:'xpark'},
+    {time:'14:45', t:'小吃 · 小公园内', d:'甘草水果、无米粿、老妈宫粽球尝鲜', loc:'xpark', type:'food'},
+    {time:'15:30', t:'小吃 · 镇邦街', d:'肠粉、鲎粿、蚝烙，汕头经典小吃', loc:'xpark', type:'food'},
+    {time:'16:15', t:'小吃 · 骑楼街', d:'糖葱薄饼、反沙番薯芋、豆花', loc:'xpark', type:'food', foodKey:'xparkSnack'},
+    {time:'17:00', t:'打车 → 汕头站', d:'约8km，20分钟，约15-20元', loc:'stz', type:'taxi'},
+    {time:'18:40', t:'G8484 汕头→揭阳', d:'06车18C · 48分钟', loc:'stz', type:'train'},
+    {time:'19:28', t:'抵达揭阳站', d:'—', loc:'jyz', type:'taxi'},
+    {time:'19:30', t:'打车 → 揭阳亚朵酒店', d:'约11km，30分钟，约35-45元', loc:'jyHotel', type:'taxi'},
+    {time:'20:10', t:'晚餐 · 隆江猪脚饭', d:'酒店附近宝德广场/万景广场', loc:'huilai', type:'food', foodKey:'huilai'},
+    {time:'21:30', t:'夜宵 · 揭阳外卖', d:'噜噜睡后美团叫肠粉、砂锅粥或林姐烧烤大鸡排', loc:'jyHotel', type:'food'},
+  ]},
+  {date:'10/3', title:'揭阳 → 泉州', color:'#7a5a9e', items:[
+    {time:'08:30', t:'酒店早餐', d:'亚朵早餐，吃完出发', loc:'jyHotel', type:'food'},
+    {time:'09:00', t:'打车 → 揭阳古城', d:'酒店→进贤门约5-6km，15分钟，约20-25元', loc:'jinxian', type:'taxi'},
+    {time:'09:20', t:'进贤门城楼', d:'免费，揭阳地标，登楼俯瞰古城', loc:'jinxian', type:'sight', sightKey:'jinxian'},
+    {time:'09:40', t:'小吃 · 进贤门附近', d:'笋粿、肠粉、粿汁，揭阳早味', loc:'jinxian', type:'food'},
+    {time:'09:50', t:'揭阳城隍庙', d:'免费，宋代古庙看潮汕嵌瓷木雕', loc:'chengh', type:'sight', sightKey:'chengh'},
+    {time:'10:15', t:'小吃 · 城隍庙旁', d:'乒乓粿、鼠壳粿、蚝烙，潮汕传统粿品', loc:'chengh', type:'food'},
+    {time:'10:30', t:'中山路骑楼街', d:'南洋风情，边走边逛', loc:'zhongsh', type:'sight', sightKey:'zhongsh'},
+    {time:'10:50', t:'小吃 · 学宫附近', d:'肠粉、粿汁、豆花', loc:'zhongsh', type:'food'},
+    {time:'11:10', t:'小吃 · 中山路', d:'糖葱薄饼、甘草水果、反沙油甘', loc:'zhongsh', type:'food'},
+    {time:'11:30', t:'午餐 · 隆江猪脚饭', d:'思贤路惠来馆，猪脚软烂，噜噜也能吃', loc:'huilai', type:'food', foodKey:'huilai'},
+    {time:'12:30', t:'回酒店', d:'打车约15分钟', loc:'jyHotel', type:'taxi'},
+    {time:'13:00', t:'宝宝酒店午睡', d:'延迟退房到18:00，噜噜睡真床1.5-2小时，爸妈休整', loc:'jyHotel', type:'rest'},
+    {time:'15:00', t:'退房取行李', d:'—', loc:'jyHotel', type:'hotel'},
+    {time:'15:30', t:'揭阳楼广场', d:'距酒店约800米步行可达，看巨型铜方鼎', loc:'jylou', type:'sight', sightKey:'jylou'},
+    {time:'16:30', t:'打车 → 揭阳站', d:'约11km，30分钟，约35-45元', loc:'jyz', type:'taxi'},
+    {time:'17:30', t:'G8483 揭阳→潮汕', d:'03车04F · 23分钟', loc:'jyz', type:'train'},
+    {time:'17:53', t:'便捷换乘（不出站）', d:'直奔便捷换乘通道', loc:'cs', type:'note',
+      warn:'换乘仅17分钟！爸抱噜噜快跑，妈拿行李，别出站'},
+    {time:'18:10', t:'D2326 潮汕→泉州', d:'1小时55分钟', loc:'cs', type:'train'},
+    {time:'20:05', t:'抵达泉州站', d:'回家', loc:'qz', type:'end'},
+  ]},
+];
+
+const TODOS = [
+  '今晚检查：推车、纸尿裤、湿巾、零食、保温杯、换洗衣物、防晒霜、遮阳帽',
+  '手机下载：高德地图、滴滴、美团/大众点评、存知己（寄存行李）',
+  '10/1 出门前：身份证、充电宝、少量现金、雨伞',
+  '10/1 17:00前上广济桥（17:00停止入场，17:30拆浮桥）',
+  '10/2 中午到汕头后：存知己App寄存行李',
+  '10/2 17:00前从汕头小公园出发去汕头站',
+  '10/3 15:00前退房（延迟退房到18:00，给宝宝午睡）',
+  '10/3 15:30前从揭阳楼出发去揭阳站',
+  '10/3 潮汕站换乘走便捷通道，不出站',
+];
+const TIPS = [
+  {t:'打车', d:'潮汕站/揭阳站出站别坐拉客黑车，用滴滴/高德叫车，价格透明'},
+  {t:'广济桥', d:'门票20元/人，1.2m以下免费；17:00停止入场，17:30拆浮桥必看；灯光秀免费'},
+  {t:'噜噜饮食', d:'牛肉火锅选清汤锅涮嫩肉（不蘸酱），粿条、砂锅粥、猪脚、鸭母捻都安全；避免鱼生、过辣沙茶酱'},
+  {t:'午休', d:'推车就是移动小床，古城/骑楼街找有空调的店避暑'},
+  {t:'天气', d:'10月初潮汕26-32℃，白天热注意防晒补水，江边傍晚风大带薄外套'},
+  {t:'热门餐厅', d:'国庆人多，潮泰牛肉火锅11:30前到或美团取号；枫春白粥可美团外卖送到酒店（营业到凌晨3点）'},
+  {t:'夜宵外卖', d:'噜噜睡后可美团叫夜宵：潮州枫春白粥（生腌、白粥）、揭阳肠粉/砂锅粥/烧烤'},
+  {t:'返程换乘', d:'G8483→D2326仅17分钟，下车直奔便捷换乘通道，带娃务必加快速度'},
+  {t:'延迟退房', d:'两家酒店都延迟退房到18:00，Day3回酒店让宝宝睡真床再出发'},
+];
+
+/* ============ 工具 ============ */
+function amapNav(loc){const p=P[loc];return `https://uri.amap.com/navigation?to=${p[0]},${p[1]},${encodeURIComponent(p[2])}&mode=car&policy=1&src=webapp`;}
+function amapMultiNav(locs){const pts=locs.map(l=>P[l]);const f=pts[0],t=pts[pts.length-1];const v=pts.slice(1,-1).map(p=>`${p[0]},${p[1]}`).join('|');return `https://uri.amap.com/navigation?from=${f[0]},${f[1]},${encodeURIComponent(f[2])}&to=${t[0]},${t[1]},${encodeURIComponent(t[2])}${v?`&via=${v}`:''}&mode=car&policy=1&src=webapp`;}
+
+/* ============ 主题切换 ============ */
+function setTheme(name){
+  document.documentElement.setAttribute('data-theme',name);
+  document.querySelectorAll('.theme-option').forEach(o=>o.classList.toggle('active',o.dataset.theme===name));
+  localStorage.setItem('tripTheme',name);
+  document.getElementById('themePanel').classList.remove('open');
+}
+const savedTheme=localStorage.getItem('tripTheme')||'terracotta';
+document.documentElement.setAttribute('data-theme',savedTheme);
+document.querySelectorAll('.theme-option').forEach(o=>o.classList.toggle('active',o.dataset.theme===savedTheme));
+
+/* ============ Tab切换 ============ */
+function switchTab(name){
+  document.querySelectorAll('.tab-item').forEach(b=>b.classList.toggle('active',b.dataset.tab===name));
+  document.querySelectorAll('.tab-page').forEach(p=>p.classList.toggle('active',p.dataset.tab===name));
+  document.getElementById('content').scrollTop=0;
+}
+document.querySelectorAll('.tab-item').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
+
+/* ============ 首页今日摘要 ============ */
+function renderTodaySummary(){
+  const now=new Date();
+  const md=now.getMonth()+1,dd=now.getDate();
+  // 判断今天是第几天
+  let todayIdx=-1;
+  DAYS.forEach((d,i)=>{const [m,day]=d.date.split('/').map(Number);if(m===md&&day===dd)todayIdx=i;});
+  const el=document.getElementById('todaySummary');
+  if(todayIdx===-1){
+    // 行程未开始或已结束
+    if(new Date(2026,9,1)>now){
+      el.innerHTML=`<div class="ts-top"><span class="ts-day">倒计时</span><span class="ts-count">距出发还有</span></div><div class="ts-next">10/1 出发，潮州古城见 <span class="ts-tag">3天2晚</span></div>`;
+    }else{
+      el.innerHTML=`<div class="ts-top"><span class="ts-day">行程结束</span><span class="ts-count">已安全到家</span></div><div class="ts-next">潮汕之旅圆满结束，期待下次出发 ✈️</div>`;
+    }
+    return;
+  }
+  const day=DAYS[todayIdx];
+  // 找下一个未开始的项
+  const [dm,dDay]=day.date.split('/').map(Number);
+  let nextItem=null;
+  for(const it of day.items){
+    const [h,m]=it.time.split(':').map(Number);
+    const t=new Date(2026,dm-1,dDay,h,m).getTime();
+    if(t>=now.getTime()){nextItem=it;break;}
+  }
+  const doneCount=day.items.filter(it=>{const [h,m]=it.time.split(':').map(Number);return new Date(2026,dm-1,dDay,h,m).getTime()<now.getTime();}).length;
+  let nextHtml;
+  if(nextItem){
+    nextHtml=`下一站 <strong>${nextItem.t}</strong> · ${nextItem.time}`;
+  }else{
+    nextHtml=`今日行程已全部完成，好好休息 💤`;
+  }
+  el.innerHTML=`<div class="ts-top"><span class="ts-day">Day ${todayIdx+1}</span><span class="ts-count">${day.date} · ${day.title}</span></div><div class="ts-next">${nextHtml}<span class="ts-tag">${doneCount}/${day.items.length} 已完成</span></div>`;
+}
+renderTodaySummary();
+setInterval(renderTodaySummary,60000);
+
+/* ============ 倒计时 ============ */
+const EVENTS=[
+  {t:new Date('2026-10-01T08:57:00').getTime(),title:'D2311 泉州→潮汕 发车'},
+  {t:new Date('2026-10-01T11:08:00').getTime(),title:'抵达潮汕站'},
+  {t:new Date('2026-10-01T16:00:00').getTime(),title:'广济桥（17:00停止入场）'},
+  {t:new Date('2026-10-01T17:30:00').getTime(),title:'广济桥拆浮桥'},
+  {t:new Date('2026-10-01T20:00:00').getTime(),title:'广济桥灯光秀'},
+  {t:new Date('2026-10-02T18:40:00').getTime(),title:'G8484 汕头→揭阳 发车'},
+  {t:new Date('2026-10-03T17:30:00').getTime(),title:'G8483 揭阳→潮汕 发车'},
+  {t:new Date('2026-10-03T18:10:00').getTime(),title:'D2326 潮汕→泉州 发车'},
+  {t:new Date('2026-10-03T20:05:00').getTime(),title:'抵达泉州站'},
+];
+function tick(){
+  const now=Date.now(),next=EVENTS.find(e=>e.t>now);
+  if(!next){document.getElementById('nextTitle').textContent='行程结束，回家啦';['cd-h','cd-m','cd-s'].forEach(id=>document.getElementById(id).textContent='00');return;}
+  document.getElementById('nextTitle').textContent=next.title;
+  let d=next.t-now;const H=Math.floor(d/3600000);d-=H*3600000;const M=Math.floor(d/60000);d-=M*60000;const S=Math.floor(d/1000);
+  document.getElementById('cd-h').textContent=String(H).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(M).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(S).padStart(2,'0');
+}
+setInterval(tick,1000);tick();
+
+/* ============ 渲染行程 ============ */
+const dayTabs=document.getElementById('dayTabs');
+const dayContents=document.getElementById('dayContents');
+DAYS.forEach((day,di)=>{
+  const tab=document.createElement('button');
+  tab.className='day-tab'+(di===0?' active':'');
+  tab.textContent=day.date+' · '+day.title;
+  tab.onclick=()=>{
+    document.querySelectorAll('.day-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelectorAll('.day-content').forEach(c=>c.classList.remove('active'));
+    document.getElementById('dc-'+di).classList.add('active');
+  };
+  dayTabs.appendChild(tab);
+
+  const wrap=document.createElement('div');
+  wrap.className='day-content'+(di===0?' active':'');
+  wrap.id='dc-'+di;
+
+  const allLocs=day.items.map(i=>i.loc).flat().filter((v,i,a)=>v&&a.indexOf(v)===i&&P[v]);
+  wrap.innerHTML=`
+    <div class="day-map-bar">
+      <a class="btn btn-primary" href="${amapMultiNav(allLocs)}" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        全天多点导航
+      </a>
+      <button class="btn btn-ghost" onclick="var m=this.closest('.day-content').querySelector('.day-map');m.classList.toggle('open');this.querySelector('svg').style.transform=m.classList.contains('open')?'rotate(180deg)':'none'">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transition:.2s"><path d="M6 9l6 6 6-6"/></svg>
+        当日路线图
+      </button>
+    </div>
+    <div class="day-map" id="dm-${di}"></div>
+    <div class="timeline" id="tl-${di}"></div>`;
+  dayContents.appendChild(wrap);
+
+  // 路线图：高德静态地图（真实路线），加载失败回退到示意图
+  const pts=allLocs.map(l=>({n:P[l][2],lng:P[l][0],lat:P[l][1]}));
+  const c=day.color;const N=pts.length;
+  let mapHtml='';
+  if(N>0 && window.AMAP_KEY && window.AMAP_KEY!=='YOUR_AMAP_KEY'){
+    const lats=pts.map(p=>p.lat),lngs=pts.map(p=>p.lng);
+    const clng=(Math.min(...lngs)+Math.max(...lngs))/2;
+    const clat=(Math.min(...lats)+Math.max(...lats))/2;
+    const span=Math.max(Math.max(...lngs)-Math.min(...lngs),Math.max(...lats)-Math.min(...lats));
+    let zoom=15;
+    if(span>0.08)zoom=12;else if(span>0.03)zoom=13;else if(span>0.01)zoom=14;
+    const colorHex=c.replace('#','0x');
+    const markers=pts.map((p,i)=>`large,${colorHex},${i+1}:${p.lng},${p.lat}`).join('|');
+    const pathPts=pts.map(p=>`${p.lng},${p.lat}`).join(';');
+    const pathStr=`5,${colorHex},0.8,,:${pathPts}`;
+    // 不传 location 和 zoom，让高德自动适配所有标记和路径
+    const url=`https://restapi.amap.com/v3/staticmap?size=360*200&markers=${encodeURIComponent(markers)}&paths=${encodeURIComponent(pathStr)}&key=${window.AMAP_KEY}`;
+    mapHtml=`<img class="static-map" src="${url}" alt="路线图" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">`;
+  }
+  // 示意图（fallback）
+  const W=360,H=170,pad=36;
+  const positions=pts.map((p,i)=>{
+    const t=N>1?i/(N-1):0.5;
+    const x=pad+t*(W-2*pad);
+    const y=H/2 - Math.sin(t*Math.PI*1.6)*((H-2*pad)*0.28) + (i%2===0?-6:6);
+    return {x,y};
+  });
+  let svg=`<svg class="map-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="${mapHtml?'display:none':''}"><rect width="${W}" height="${H}" rx="12" fill="var(--parchment)"/>`;
+  for(let i=0;i<N-1;i++){const x1=positions[i].x,y1=positions[i].y,x2=positions[i+1].x,y2=positions[i+1].y;svg+=`<path d="M${x1},${y1} Q${(x1+x2)/2},${(y1+y2)/2+(y2-y1)*0.1} ${x2},${y2}" stroke="${c}" stroke-width="2.4" fill="none" stroke-dasharray="2 6" stroke-linecap="round"/>`;}
+  pts.forEach((p,i)=>{const X=positions[i].x,Y=positions[i].y;svg+=`<g transform="translate(${X},${Y})"><path d="M0,-12 C-6,-12 -10,-8 -10,-3 C-10,2 0,12 0,12 C0,12 10,2 10,-3 C10,-8 6,-12 0,-12 Z" fill="${c}" stroke="#fff" stroke-width="1.4"/><text x="0" y="-2.5" font-size="8.5" font-weight="700" fill="#fff" text-anchor="middle" font-family="'PingFang SC',sans-serif">${i+1}</text></g>`;});
+  svg+='</svg>';
+  let legend='<div class="map-legend">';
+  pts.forEach((p,i)=>{legend+=`<div class="ml-item"><span class="ml-num" style="background:${c}">${i+1}</span><span class="ml-name">${p.n}</span></div>`;});
+  legend+='</div>';
+  document.getElementById('dm-'+di).innerHTML=mapHtml+svg+legend;
+
+  // 时间轴
+  const tl=document.getElementById('tl-'+di);
+  const typeMap={train:'#2f7a6b',hotel:'#c45a3c',food:'#b8893a',sight:'#3a7d6e',taxi:'#7a5a9e',rest:'#b09a82',note:'#b09a82',end:'#c45a3c'};
+  const typeName={train:'火车',hotel:'酒店',food:'美食',sight:'景点',taxi:'打车',rest:'休息',note:'提示',end:'结束'};
+  // 解析每个项的时间戳，用于判断过去/现在/未来
+  const [dm,dd]=day.date.split('/').map(Number);
+  const now=new Date();
+  const dayStart=new Date(2026,dm-1,dd,0,0).getTime();
+  const dayEnd=new Date(2026,dm-1,dd,23,59).getTime();
+  const isToday=now.getTime()>=dayStart&&now.getTime()<=dayEnd;
+  const isPastDay=dayEnd<now.getTime();
+  // 找到下一个未开始的项（仅当天显示"进行中"）
+  let nowIdx=isPastDay?day.items.length:-1;
+  if(isToday){
+    for(let i=0;i<day.items.length;i++){
+      const [h,m]=day.items[i].time.split(':').map(Number);
+      const t=new Date(2026,dm-1,dd,h,m).getTime();
+      if(t>=now.getTime()){nowIdx=i;break;}
+    }
+  }
+  if(nowIdx===-1) nowIdx=day.items.length; // 当天全部已过 或 未来天
+  day.items.forEach((it,ii)=>{
+    const item=document.createElement('div');
+    const [h,m]=it.time.split(':').map(Number);
+    const itTime=new Date(2026,dm-1,dd,h,m).getTime();
+    let status='future';
+    if(ii<nowIdx) status='past';
+    else if(ii===nowIdx) status='now';
+    item.className='tl-item tl-'+status;
+
+    let locHtml='';
+    if(it.loc){const ls=Array.isArray(it.loc)?it.loc:[it.loc];locHtml=ls.map(l=>P[l]?`<a class="tl-loc" href="${amapNav(l)}" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>${P[l][2]}</a>`:'').join('');}
+    const flag=it.book?'<span class="book-tag">需订票</span>':'';
+    const alert=it.alert?`<div class="tl-alert"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg>${it.alert}</div>`:'';
+    const warn=it.warn?`<div class="tl-warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg>${it.warn}</div>`:'';
+
+    // 宝宝友好标签
+    let babyTag='';
+    if(it.sightKey&&SIGHTS[it.sightKey]&&SIGHTS[it.sightKey].baby!==undefined){
+      const b=SIGHTS[it.sightKey];
+      babyTag=b.baby?`<span class="baby-tag" title="${b.babyTip||''}">🐣 宝宝友好</span>`:`<span class="baby-tag no" title="${b.babyTip||''}">🐣 注意</span>`;
+    }
+    if(it.foodKey&&FOODS[it.foodKey]&&FOODS[it.foodKey].baby!==undefined){
+      const b=FOODS[it.foodKey];
+      babyTag=b.baby?`<span class="baby-tag" title="${b.babyTip||''}">🐣 宝宝友好</span>`:`<span class="baby-tag no" title="${b.babyTip||''}">🐣 注意</span>`;
+    }
+
+    // 可展开详情
+    let expandHtml='';
+    if(it.sightKey&&SIGHTS[it.sightKey]){
+      const s=SIGHTS[it.sightKey];
+      const babyInfo=s.baby!==undefined?`<div style="font-size:12px;color:var(--text-3);margin-top:6px">🐣 ${s.baby?'宝宝友好':''}：${s.babyTip||''}</div>`:'';
+      expandHtml=`<button class="tl-expand-toggle" onclick="var e=this.nextElementSibling;e.classList.toggle('open');this.classList.toggle('open')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>景点介绍</button>
+        <div class="tl-expand"><div style="margin-bottom:6px">${s.intro}</div><div style="font-size:12px;color:var(--text-3)">${s.tips}</div>${babyInfo}</div>`;
+    }
+    if(it.foodKey&&FOODS[it.foodKey]){
+      const f=FOODS[it.foodKey];
+      const babyInfo=f.baby!==undefined?`<div style="font-size:12px;color:var(--text-3);margin-top:6px">🐣 ${f.baby?'宝宝友好':''}：${f.babyTip||''}</div>`:'';
+      expandHtml=`<button class="tl-expand-toggle" onclick="var e=this.nextElementSibling;e.classList.toggle('open');this.classList.toggle('open')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>推荐菜</button>
+        <div class="tl-expand"><div class="dishes" style="margin-bottom:8px">${f.dishes.map(d=>`<span class="dish">${d}</span>`).join('')}</div><div style="font-size:12px;color:var(--text-3)">${f.price} · ${f.tips}</div>${babyInfo}</div>`;
+    }
+
+    const tn=typeName[it.type]||'';
+    const nowBadge=status==='now'?'<span class="now-badge">进行中</span>':'';
+    item.dataset.time=itTime;
+    item.innerHTML=`<div class="tl-time">${it.time}</div><div class="tl-mid"><div class="tl-dot" style="background:${day.color}"></div><div class="tl-line"></div></div><div class="tl-card"><div class="tl-top"><span class="tl-type" style="background:${typeMap[it.type]||'#999'}">${tn}</span><span class="tl-title">${it.t}</span>${babyTag}${flag}${nowBadge}</div><div class="tl-desc">${it.d}</div>${locHtml}${alert}${warn}${expandHtml}</div>`;
+    tl.appendChild(item);
+  });
+});
+
+/* 定时刷新行程状态（过去/进行中/未来），每分钟一次 */
+function refreshTimelineStatus(){
+  const now=Date.now();
+  document.querySelectorAll('.timeline').forEach(tl=>{
+    const items=Array.from(tl.querySelectorAll('.tl-item'));
+    if(!items.length) return;
+    // 从第一个项的 data-time 推断这是哪一天
+    const firstT=Number(items[0].dataset.time);
+    const firstDate=new Date(firstT);
+    const dayStart=new Date(firstDate.getFullYear(),firstDate.getMonth(),firstDate.getDate(),0,0).getTime();
+    const dayEnd=dayStart+24*3600*1000-1;
+    const isToday=now>=dayStart&&now<=dayEnd;
+    const isPastDay=dayEnd<now;
+    let nowIdx;
+    if(isPastDay) nowIdx=items.length; // 已过天：全部past
+    else if(!isToday) nowIdx=items.length; // 未来天：全部future（nowIdx=length即没有now项）
+    else{
+      // 当天：找第一个时间>=now的项
+      nowIdx=-1;
+      for(let i=0;i<items.length;i++){
+        if(Number(items[i].dataset.time)>=now){nowIdx=i;break;}
+      }
+      if(nowIdx===-1) nowIdx=items.length;
+    }
+    items.forEach((it,ii)=>{
+      it.classList.remove('tl-past','tl-now','tl-future');
+      if(ii<nowIdx) it.classList.add('tl-past');
+      else if(ii===nowIdx&&isToday){it.classList.add('tl-now');}
+      else it.classList.add('tl-future');
+      const badge=it.querySelector('.now-badge');
+      if(badge) badge.style.display=(ii===nowIdx&&isToday)?'':'none';
+    });
+  });
+}
+setInterval(refreshTimelineStatus,60000);
+
+/* ============ 渲染导航页 ============ */
+const navGroups={
+  '潮州':['czHotel','xihu','xima','pafang','kaiyuan','guangji','niurou'],
+  '汕头':['xpark','aixi','laoma','stz'],
+  '揭阳':['jyHotel','jylou','jinxian','xuegong','chengh','zhongsh','huilai','jyz'],
+  '出发/到达':['qz','cs'],
+};
+let navHtml='';
+for(const [city,locs] of Object.entries(navGroups)){
+  navHtml+=`<div class="city-group"><div class="city-title serif">${city}</div><div class="loc-list">`;
+  locs.forEach(l=>{if(P[l])navHtml+=`<a class="loc-item" href="${amapNav(l)}" target="_blank"><div class="li-l"><span class="li-dot"></span><span class="li-nm">${P[l][2]}</span></div><span class="li-go">导航<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>`;});
+  navHtml+='</div></div>';
+}
+document.getElementById('navList').innerHTML=navHtml;
+
+/* ============ 渲染吃住页 ============ */
+const foodOrder=['xima','niurou','aixi','laoma','xparkSnack','huilai'];
+let foodHtml='';
+foodOrder.forEach(k=>{
+  const f=FOODS[k];const loc=P[k]?k:(k==='xparkSnack'?'xpark':null);
+  foodHtml+=`<div class="food-card"><div class="food-hd"><div class="food-name">${f.name}</div><span class="food-tag">${f.area}</span></div><div class="food-desc">${f.desc}</div><div class="dishes">${f.dishes.map(d=>`<span class="dish">${d}</span>`).join('')}</div><div class="food-meta"><span>${f.price}</span></div><div class="food-meta" style="color:var(--text-3)">${f.tips}</div>${loc&&P[loc]?`<a class="food-nav" href="${amapNav(loc)}" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>高德导航</a>`:''}</div>`;
+});
+document.getElementById('foodList').innerHTML=foodHtml;
+
+/* 潮州/汕头/揭阳美食地图渲染（城市Tab + 街区折叠 + 搜索筛选） */
+function amapSearch(kw){return `https://uri.amap.com/search?keyword=${encodeURIComponent(kw)}`;}
+const starred=new Set(['谢三卤·三十八年非遗卤水火锅','胡荣泉','官塘锋记鱼生·生腌·砂锅粥','谢怀亮芝麻茶','乌记明卤鹅(古城总店)','松发咖啡厅 songfa cafe','跃进里炸腐乳鸡翅','李财气牛肉火锅','普宁反沙番薯芋头','永逸豆浆','金新粿汁','福合埕无米粿甜汤','三姐妹肠粉','非遗·老山合·潮汕特色猪头粽','老牌富兴小食','李记老牌豆腐花','鸿运临·鹧鸪饭','金不换白粥','古市卤鼎·非遗卤水火锅','非遗·苏南勤记卤鹅','三代人甜汤','龙北南兴丸店·非遗','飞燕三毛Q饼','东山卢记牛肉火锅']);
+const FOOD_MAPS={cz:CZ_FOOD_MAP,st:ST_FOOD_MAP,jy:JY_FOOD_MAP};
+const FOOD_CATS=[
+  {k:'all',n:'全部',kw:[]},
+  {k:'rice',n:'肠粉粿条',kw:['肠粉','粿条','粿汁','粿卷','粿','干面','炒粿','糕粿','麦粿','春饼','春卷','粽球','粽','肖米','饼']},
+  {k:'beef',n:'牛肉火锅',kw:['牛肉','牛','鸡煲','鸭煲','羊肉','猪肚鸡','野生菇','鸭肉','鹅肠','卤水','牛杂']},
+  {k:'sweet',n:'甜汤甜品',kw:['甜汤','豆花','豆花草粿','草粿','水粿','杏仁茶','芝麻茶','甜品','冰淇淋','冰室','冰沙','果汁冰','甜','姜薯','鸭母捻','五果汤','绿豆爽','双皮奶','芝麻糊']},
+  {k:'raw',n:'生腌卤味',kw:['生腌','鱼生','卤鹅','卤味','卤水','鹅','卤','猪脚','鹅肠','鹅肝','粉肝']},
+  {k:'snack',n:'小吃炸物',kw:['鸡翅','鸡柳','煎饺','炸串','铁板','反沙','甘草水果','薄饼','虾枣','虾饼','肉串','香鸡柳','无米粿','鲎粿','腐乳','糖葱','烧烤','烤肉','烤盘','烤鱼']},
+  {k:'drink',n:'饮品咖啡',kw:['咖啡','茶','豆浆','凉茶','果汁','饮品','COFFEE']},
+  {k:'other',n:'其他',kw:['砂锅粥','白粥','粥','海鲜','大排档','鳝鱼','蚝烙','鱼肠','素食','斋菜','鹧鸪','特产','丸']},
+];
+let activeCity='cz';
+let activeCat='all';
+let searchKw='';
+
+function matchFilter(s){
+  if(activeCat!=='all'){
+    const cat=FOOD_CATS.find(c=>c.k===activeCat);
+    const hay=(s.n+' '+(s.d||[]).join(' ')+' '+(s.note||'')).toLowerCase();
+    if(!cat.kw.some(k=>hay.includes(k.toLowerCase()))) return false;
+  }
+  if(searchKw){
+    const hay=(s.n+' '+(s.d||[]).join(' ')+' '+(s.addr||'')).toLowerCase();
+    if(!hay.includes(searchKw.toLowerCase())) return false;
+  }
+  return true;
+}
+
+function renderFoodFilters(){
+  const el=document.getElementById('foodFilters');
+  el.innerHTML=FOOD_CATS.map(c=>`<button class="food-filter${c.k===activeCat?' active':''}" onclick="setFoodCat('${c.k}')">${c.n}</button>`).join('');
+}
+function setFoodCat(k){activeCat=k;renderFoodFilters();renderFoodMap();}
+function filterFood(){
+  searchKw=document.getElementById('foodSearch').value.trim();
+  document.getElementById('clearSearch').style.display=searchKw?'block':'none';
+  renderFoodMap();
+}
+
+function renderFoodMap(){
+  const mapData=FOOD_MAPS[activeCity];
+  let html='';
+  let totalMatch=0;
+  mapData.forEach((g,i)=>{
+    const matched=g.shops.filter(matchFilter);
+    if(matched.length===0 && (searchKw||activeCat!=='all')) return;
+    totalMatch+=matched.length;
+    const openClass=(searchKw||activeCat!=='all')?' open':'';
+    html+=`<div class="accordion"><button class="acc-hd${openClass}" onclick="this.classList.toggle('open')"><span class="acc-name">${g.area}</span><span class="acc-count">${matched.length}家</span><svg class="acc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-bd${openClass}"><div class="shop-list">`;
+    matched.forEach(s=>{
+      const isStar=starred.has(s.n)||s.star;
+      const dishes=s.d.length?s.d.map(x=>`<span class="dish sm">${x}</span>`).join(''):'';
+      html+=`<a class="shop-item" href="${amapSearch(s.n+' '+s.addr)}" target="_blank"><div class="shop-name">${isStar?'<span class="star">★</span>':''}${s.n}</div><div class="shop-addr">${s.addr}</div>${dishes?`<div class="shop-dishes">${dishes}</div>`:''}${s.note?`<div class="shop-note">${s.note}</div>`:''}</a>`;
+    });
+    html+=`</div></div></div>`;
+  });
+  if(!html){html='<div class="empty-tip">没有找到匹配的店，换个关键词试试～</div>';}
+  document.getElementById('foodMapContainer').innerHTML=html;
+}
+renderFoodFilters();
+renderFoodMap();
+document.querySelectorAll('.city-tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.city-tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    activeCity=t.dataset.city;
+    renderFoodMap();
+  });
+});
+
+let stayHtml='';
+BOOKINGS.filter(b=>b.type==='hotel').forEach(b=>{
+  const loc=b.loc;const p=P[loc];
+  stayHtml+=`<div class="stay-card"><div class="stay-name">${b.title}</div><div class="stay-room">${b.time}</div><div class="stay-addr">${b.meta}</div>${p?`<a class="food-nav" href="${amapNav(loc)}" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>高德导航</a>`:''}</div>`;
+});
+document.getElementById('stayList').innerHTML=stayHtml;
+
+/* ============ 渲染更多页 ============ */
+document.getElementById('todoList').innerHTML=TODOS.map(t=>`<li>${t}</li>`).join('');
+
+let bookHtml='';
+BOOKINGS.forEach(b=>{
+  let locHtml='';
+  if(b.loc){const ls=Array.isArray(b.loc)?b.loc:[b.loc];locHtml=ls.map(l=>P[l]?`<a class="book-loc" href="${amapNav(l)}" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>${P[l][2]}</a>`:'').join('');}
+  bookHtml+=`<div class="book-card"><div class="book-hd"><div class="book-ic" style="background:${b.color}">${b.icon}</div><div><div class="book-title">${b.title}</div><div class="book-time">${b.time}</div></div></div><div class="book-meta">${b.meta}</div>${locHtml}</div>`;
+});
+document.getElementById('bookList').innerHTML=bookHtml;
+
+document.getElementById('tipList').innerHTML=TIPS.map(t=>`<div class="tip-item"><div class="tip-t">${t.t}</div><div class="tip-d">${t.d}</div></div>`).join('');
+</script>
+</body>
+</html>
