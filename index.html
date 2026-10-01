@@ -1063,8 +1063,9 @@ DAYS.forEach((day,di)=>{
     const colorHex=c.replace('#','0x');
     const markers=pts.map((p,i)=>`large,${colorHex},${i+1}:${p.lng},${p.lat}`).join('|');
     const pathPts=pts.map(p=>`${p.lng},${p.lat}`).join(';');
-    const pathStr=`weight:5|color:${colorHex}|opacity:0.8|${pathPts}`;
-    const url=`https://restapi.amap.com/v3/staticmap?location=${clng},${clat}&zoom=${zoom}&size=360*200&markers=${encodeURIComponent(markers)}&paths=${encodeURIComponent(pathStr)}&key=${window.AMAP_KEY}`;
+    const pathStr=`5,${colorHex},0.8,,:${pathPts}`;
+    // 不传 location 和 zoom，让高德自动适配所有标记和路径
+    const url=`https://restapi.amap.com/v3/staticmap?size=360*200&markers=${encodeURIComponent(markers)}&paths=${encodeURIComponent(pathStr)}&key=${window.AMAP_KEY}`;
     mapHtml=`<img class="static-map" src="${url}" alt="路线图" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">`;
   }
   // 示意图（fallback）
